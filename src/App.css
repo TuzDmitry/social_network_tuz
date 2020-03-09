@@ -9,21 +9,7 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
-.header {
-  background: chartreuse;
-  grid-area: h;
-}
-.header img {width: 50px;}
 
-.nav{
-  background: aqua;
-  grid-area: n;
-}
-.content{
-  background: cornflowerblue;
-  grid-area: c;
-}
-.content img {
-  width: 700px;
-  height: 300px;
-}
+
+
+
