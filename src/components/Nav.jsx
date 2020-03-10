@@ -4,19 +4,19 @@ const Nav=()=> {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <a href="#s">Profile</a>
+                <a>Profile</a>
             </div>
             <div className={s.item}>
-                <a href="#s">Messages</a>
+                <a>Messages</a>
             </div>
             <div className={s.item}>
-                <a href="#s">News</a>
+                <a>News</a>
             </div>
             <div className={s.item}>
-                <a href="#s">Music</a>
+                <a>Music</a>
             </div>
-            <div className={s.item}>
-                <a href="#s">Settings</a>
+            <div className={`${s.item} ${s.settings}`}>
+                <a>Settings</a>
             </div>
         </nav>
     )
