@@ -1,13 +1,13 @@
 import React from "react";
-// import h from './Header.module.css';
+import pp from './Profile_picture.module.css';
 
 
-const Profile_=()=> {
+const Profile_picture=()=> {
     return (
-        <header className={h.header}>
-            <img src="https://i.pinimg.com/originals/8e/8e/5d/8e8e5d3e0b38ecd0688082625bbf1591.png" alt="fdsfd"/>
-        </header>
+        <div className={pp.profilePictire}>
+            <img src="https://s1.1zoom.ru/b5050/174/USA_Houses_Evening_Pond_Las_Vegas_532588_2880x1800.jpg" alt="header_photo"/>
+        </div>
     )
 };
 
-export default Header;
+export default Profile_picture;

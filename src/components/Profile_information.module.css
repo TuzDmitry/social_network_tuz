@@ -1,0 +1,16 @@
+
+.profAva {
+    display: flex;
+    margin-top: 10px;
+    background-color: aquamarine;
+}
+
+
+.profAva img{
+    width: 100px;
+    height: 100px;
+}
+
+.person_information{
+    padding-left: 25px;
+}

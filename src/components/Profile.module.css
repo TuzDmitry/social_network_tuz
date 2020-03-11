@@ -2,11 +2,11 @@
     background: cornflowerblue;
     grid-area: c;
 }
-.content img {
-    width: 700px;
-    height: 100px;
+
+.flexContainer {
+    width: 500px;
 }
 
-.item{
-    color: red;
-}
+/*.item{*/
+/*    color: red;*/
+/*}*/
