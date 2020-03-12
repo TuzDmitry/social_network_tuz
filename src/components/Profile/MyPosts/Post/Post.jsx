@@ -4,13 +4,16 @@ import post from './Post.module.css';
 
 
 
-const Post=()=> {
+const Post=(props)=> {
+
+    // console.log(props.message);
+debugger;
     return (
         <div className={post.item}>
             <img src="https://i.pinimg.com/736x/8d/a5/48/8da5485220f54aff3bc0c15dbbd7a739.jpg" alt="fds"/>
-            Post1
+            {props.message}
             <div>
-                <span>like</span>
+                <span>likes:{props.likes}</span>
             </div>
         </div>
 

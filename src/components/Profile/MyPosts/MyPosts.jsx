@@ -15,8 +15,8 @@ const MyPosts=()=> {
                 <button type={"submit"}>Send</button>
             </form>
             <div className='posts'>
-                <Post />
-                <Post />
+                <Post message='How are u?' likes='5'/>
+                <Post message='It is my fisrt post' likes='3'/>
             </div>
         </div>
     )
