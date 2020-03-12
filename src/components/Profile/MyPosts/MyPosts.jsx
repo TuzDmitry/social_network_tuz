@@ -1,9 +1,11 @@
 import React from "react";
-import pb from './Profile_posts_block.module.css';
+import pb from './MyPosts.module.css';
+import Post from "./Post/Post";
 
 
 
-const Profile_posts_block=()=> {
+
+const MyPosts=()=> {
     return (
         <div className={pb.posts_block}>
             <h2>My Posts</h2>
@@ -13,11 +15,11 @@ const Profile_posts_block=()=> {
                 <button type={"submit"}>Send</button>
             </form>
             <div className='posts'>
-                <div className='item'>Post1</div>
-                <div className='item'>Post2</div>
+                <Post />
+                <Post />
             </div>
         </div>
     )
 };
 
-export default Profile_posts_block;
+export default MyPosts;

@@ -1,8 +1,8 @@
 import React from "react";
 import p from './Profile.module.css';
-import Profile_picture from "./Profile_picture";
-import Profile_information from "./Profile_information";
-import Profile_posts_block from "./Profile_posts_block";
+import Profile_picture from "./Picture/Profile_picture";
+import Profile_information from "./MyInfo/Profile_information";
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile=()=> {
     return (
@@ -10,7 +10,7 @@ const Profile=()=> {
             <div className={p.flexContainer}>
                 <Profile_picture />
                 <Profile_information />
-                <Profile_posts_block />
+                <MyPosts />
             </div>
         </div>
     )
