@@ -1,10 +1,16 @@
 .nav{
     background: aqua;
     grid-area: n;
+    padding: 20px;
 }
-.item{
+.item a{
+    text-decoration: none;
     color: white;
 }
+.item a.activeLink{
+    color: black;
+}
+
 .settings {
     margin-top: 20px;
 }
