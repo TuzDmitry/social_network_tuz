@@ -6,7 +6,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile=()=> {
     return (
-        <div className={p.content}>
+        <div>
             <div className={p.flexContainer}>
                 <Profile_picture />
                 <Profile_information />
