@@ -3,17 +3,9 @@ import pb from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 
+const MyPosts = (props) => {
 
-
-const MyPosts=(props)=> {
-    let postsData=[
-        {id: '1', message:'Post1', likesCount: '21'},
-        {id: '2', message:'Post2', likesCount: '24'},
-        {id: '3', message:'Post3', likesCount: '4'},
-        {id: '4', message:'Post4', likesCount: '12'}
-    ]
-
-    let postsElements=postsData.map((post)=><Post message={post.message} likes={post.likesCount}/>)
+    let postsElements = props.posts.map((post) => <Post message={post.message} likes={post.likesCount}/>)
 
     return (
         <div className={pb.posts_block}>
