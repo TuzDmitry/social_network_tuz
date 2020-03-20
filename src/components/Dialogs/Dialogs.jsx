@@ -28,30 +28,26 @@ const Dialogs = (props) => {
         {name: 'Gora', id: '5'},
         {name: 'Pahsa', id: '6'},
     ]
-
     let messagesData = [
         {message: 'Hey'},
         {message: 'How u?'},
         {message: 'Hafanana'}
     ]
 
+    let dialogsElements=dialogsData.map((dialog)=><DialogItem name={dialog.name}/>)
+    let messagesElements=messagesData.map((text)=><Message message={text.message}/>)
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem name={dialogsData[0].name}/>
-                <DialogItem name={dialogsData[1].name}/>
-                <DialogItem name={dialogsData[2].name}/>
-                <DialogItem name="Kolya" id="4"/>
-                <DialogItem name="Gora" id="5"/>
-                <DialogItem name="Pahsa" id="6"/>
-                {/*<div className={s.dialog}>*/}
-                {/*    <NavLink to="/dialogs/6">Pasha</NavLink>*/}
-                {/*</div>*/}
+                {dialogsElements}
+                {/*<DialogItem name={dialogsData[0].name}/>*/}
+                {/*<DialogItem name="Kolya" id="4"/>*/}
             </div>
             <div className={s.messages}>
-                <Message message={messagesData[0].name}/>
-                <Message message="how are u"/>
-                <Message message="whats up"/>
+                {messagesElements}
+                {/*<Message message={messagesData[0].name}/>*/}
+                {/*<Message message="whats up"/>*/}
                 {/*<div className={s.message}>whats up</div>*/}
             </div>
         </div>

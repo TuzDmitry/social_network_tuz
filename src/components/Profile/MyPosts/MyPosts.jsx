@@ -7,11 +7,13 @@ import Post from "./Post/Post";
 
 const MyPosts=(props)=> {
     let postsData=[
-        {id: '1', containText:'Post1', likesCount: '21'},
-        {id: '2', containText:'Post2', likesCount: '24'},
-        {id: '3', containText:'Post3', likesCount: '4'},
-        {id: '4', containText:'Post4', likesCount: '12'}
+        {id: '1', message:'Post1', likesCount: '21'},
+        {id: '2', message:'Post2', likesCount: '24'},
+        {id: '3', message:'Post3', likesCount: '4'},
+        {id: '4', message:'Post4', likesCount: '12'}
     ]
+
+    let postsElements=postsData.map((post)=><Post message={post.message} likes={post.likesCount}/>)
 
     return (
         <div className={pb.posts_block}>
@@ -22,9 +24,10 @@ const MyPosts=(props)=> {
                 <button type={"submit"}>Send</button>
             </form>
             <div className='posts'>
-                <Post message={postsData[0].containText} likes={postsData[0].likesCount}/>
-                <Post message={postsData[1].containText} likes={postsData[1].likesCount}/>
-                <Post message='It is my fisrt post' likes='3'/>
+                {postsElements}
+                {/*<Post message={postsData[0].containText} likes={postsData[0].likesCount}/>*/}
+                {/*<Post message={postsData[1].containText} likes={postsData[1].likesCount}/>*/}
+                {/*<Post message='It is my fisrt post' likes='3'/>*/}
             </div>
         </div>
     )
