@@ -1,7 +1,7 @@
 import React from "react";
 import p from './Profile.module.css';
-import Profile_picture from "./Picture/Profile_picture";
-import Profile_information from "./MyInfo/Profile_information";
+import ProfilePicture from "./Picture/ProfilePicture";
+import ProfileInformation from "./MyInfo/ProfileInformation";
 import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = (props) => {
@@ -12,8 +12,8 @@ const Profile = (props) => {
     return (
         <div>
             <div className={p.flexContainer}>
-                <Profile_picture/>
-                <Profile_information/>
+                <ProfilePicture/>
+                <ProfileInformation/>
                 <MyPosts posts={props.posts}/>
             </div>
         </div>

@@ -1,8 +1,8 @@
 import React from "react";
-import pi from './Profile_information.module.css';
+import pi from './ProfileInformation.module.css';
 
 
-const Profile_information=()=> {
+const ProfileInformation=()=> {
     return (
         <div className={pi.profAva}>
             <img src="https://i.pinimg.com/736x/8d/a5/48/8da5485220f54aff3bc0c15dbbd7a739.jpg" alt="your_photo"/>
@@ -16,4 +16,4 @@ const Profile_information=()=> {
     )
 };
 
-export default Profile_information;
+export default ProfileInformation;

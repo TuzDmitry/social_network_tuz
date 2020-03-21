@@ -1,8 +1,8 @@
 import React from "react";
-import pp from './Profile_picture.module.css';
+import pp from './ProfilePicture.module.css';
 
 
-const Profile_picture=()=> {
+const ProfilePicture=()=> {
     return (
         <div className={pp.profilePictire}>
             <img src="https://s1.1zoom.ru/b5050/174/USA_Houses_Evening_Pond_Las_Vegas_532588_2880x1800.jpg" alt="header_photo"/>
@@ -10,4 +10,4 @@ const Profile_picture=()=> {
     )
 };
 
-export default Profile_picture;
+export default ProfilePicture;
