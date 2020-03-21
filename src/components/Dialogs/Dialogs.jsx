@@ -5,25 +5,14 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-    // console.log(props.dialogs);
-    // console.log('пропсы в диалогах');
+    //////////проверка прокидывания пропсов в консоли...////////////
+    console.log(props.dialogs);
+    console.log('пропсы в диалогах');
+    console.log(props.messages);
+    ////////////////////////////////////////////////////
 
-    let dialogsData = [
-        {name: 'Dima', id: '1'},
-        {name: 'Tanya', id: '2'},
-        {name: 'Dasha', id: '3'},
-        {name: 'Kolya', id: '4'},
-        {name: 'Gora', id: '5'},
-        {name: 'Pahsa', id: '6'},
-    ]
-    let messagesData = [
-        {message: 'Hey'},
-        {message: 'How u?'},
-        {message: 'Hafanana'}
-    ]
-
-    let dialogsElements = dialogsData.map((dialog) => <DialogItem name={dialog.name}/>)
-    let messagesElements = messagesData.map((text) => <Message message={text.message}/>)
+    let dialogsElements = props.dialogs.map((dialog) => <DialogItem name={dialog.name}/>)
+    let messagesElements = props.messages.map((text) => <Message message={text.message}/>)
 
     return (
         <div className={s.dialogs}>
