@@ -5,17 +5,21 @@
 }
 
 .messages{
+    padding: 10px;
+    background: rgba(183, 241, 255, 0.6);
     display: flex;
     flex-direction: column;
-    /*align-items: flex-end;*/
 }
 
 .messages div{
     display: flex;
+    background: rgba(255, 130, 79, 0.48);
+    padding: 10px;
+    border-radius:15px;
 }
 
 .messages div:nth-child(2n){
-    align-items: flex-start;
+    align-self: flex-start;
 }
 
 .messages div:nth-child(2n+1){

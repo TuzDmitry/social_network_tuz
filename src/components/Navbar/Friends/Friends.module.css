@@ -1,0 +1,24 @@
+.friendsblock {
+    margin-top: 30px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.friend {
+
+}
+
+.friend img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 12px;
+    font-weight: bold;
+}
