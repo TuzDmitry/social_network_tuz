@@ -14,18 +14,38 @@ const Dialogs = (props) => {
     let dialogsElements = props.state.dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.state.messages.map((text) => <Message message={text.message}/>)
 
+    let textAreasref = React.createRef();
+
+
+    let AddMessage = () => {
+        let newMessageElement = textAreasref.current.value;
+        alert(newMessageElement);
+        textAreasref.current.value = "";
+    }
+
+
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                {dialogsElements}
-                {/*<DialogItem name={dialogsData[0].name}/>*/}
-                {/*<DialogItem name="Kolya" id="4"/>*/}
+        <div>
+            <div className={s.dialogs}>
+                <div className={s.dialogsItems}>
+                    {dialogsElements}
+                    {/*<DialogItem name={dialogsData[0].name}/>*/}
+                    {/*<DialogItem name="Kolya" id="4"/>*/}
+                </div>
+                <div className={s.messages}>
+                    {messagesElements}
+                    {/*<Message message={messagesData[0].name}/>*/}
+                    {/*<Message message="whats up"/>*/}
+                    {/*<div className={s.message}>whats up</div>*/}
+                </div>
             </div>
-            <div className={s.messages}>
-                {messagesElements}
-                {/*<Message message={messagesData[0].name}/>*/}
-                {/*<Message message="whats up"/>*/}
-                {/*<div className={s.message}>whats up</div>*/}
+            <div className={s.dialogsFooter}>
+                <div>
+                    <textarea ref={textAreasref}></textarea>
+                </div>
+                <div>
+                    <button onClick={AddMessage}>Отправить</button>
+                </div>
             </div>
         </div>
     )

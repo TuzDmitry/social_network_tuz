@@ -2,6 +2,11 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    grid-template-rows: auto 2fr;
+}
+
+.dialogsFooter{
+    background: rgba(161, 106, 183, 0.63);
 }
 
 .messages{
