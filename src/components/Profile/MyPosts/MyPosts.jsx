@@ -17,18 +17,20 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
+        debugger;
         let newText = newTitleRef.current.value;
-        alert(newText);
+        // alert(newText);
+        props.addPost(newText)
     }
 
     return (
         <div className={pb.posts_block}>
             <h2>My Posts</h2>
-            <form className='new_post'>
-                <label for='area_post'>New Post</label>
+            <div className='new_post'>
+                <label >New Post</label>
                 <textarea ref={newTitleRef} className={pb.textarea_new_post} ></textarea>
-                <button onClick={addPost} type={"submit"}>Send</button>
-            </form>
+                <button onClick={addPost}>Send</button>
+            </div>
             <div className='posts'>
                 {postsElements}
                 {/*<Post message={postsData[0].containText} likes={postsData[0].likesCount}/>*/}

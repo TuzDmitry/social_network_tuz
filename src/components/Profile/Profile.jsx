@@ -8,13 +8,13 @@ const Profile = (props) => {
     /////////проверка прокидывания пропсов в консоли...////////////
     console.log(props.posts)
     console.log('проверка в профиле')
-debugger;
+
     return (
         <div>
             <div className={p.flexContainer}>
                 <ProfilePicture/>
                 <ProfileInformation/>
-                <MyPosts posts={props.state.posts}/>
+                <MyPosts posts={props.state.posts} addPost={props.addPost}/>
             </div>
         </div>
     )
