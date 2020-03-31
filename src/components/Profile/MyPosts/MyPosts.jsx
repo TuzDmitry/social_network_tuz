@@ -18,9 +18,9 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         debugger;
-        let newText = newTitleRef.current.value;
+        let text = newTitleRef.current.value;
         // alert(newText);
-        props.addPost(newText)
+        props.addPost(text)
     }
 
     return (
