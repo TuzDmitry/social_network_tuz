@@ -14,10 +14,11 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
-        debugger;
+        // debugger;
         let text = newTitleRef.current.value;
         // alert(newText);
         props.addPost(text)
+        newTitleRef.current.value="";
     }
 
     return (
