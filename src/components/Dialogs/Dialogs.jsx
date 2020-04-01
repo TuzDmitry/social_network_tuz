@@ -5,11 +5,7 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-    //////////проверка прокидывания пропсов в консоли...////////////
-    console.log(props.dialogs);
-    console.log('пропсы в диалогах');
-    console.log(props.messages);
-    ////////////////////////////////////////////////////
+
 
     let dialogsElements = props.state.dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.state.messages.map((text) => <Message message={text.message}/>)

@@ -5,9 +5,7 @@ import post from './Post.module.css';
 
 
 const Post=(props)=> {
-    /////////проверка прокидывания пропсов в консоли...////////////
-    console.log(props.message);
-    // console.log('проверка в посте')
+
 
 
     return (

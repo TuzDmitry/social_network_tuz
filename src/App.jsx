@@ -11,12 +11,7 @@ import Settings from "./components/Settings/Settings";
 
 
 const App = (props) => {
-    /////////проверка прокидывания пропсов в консоли...////////////
-    console.log(props.dialogs);
-    console.log(props.messages);
-    console.log(props.posts);
-    console.log('пропсы в апп');
-    // let dialogs1=props.dialogs//////
+
     return (
         <div className="app-wrapper">
             <Header/>
