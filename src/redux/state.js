@@ -23,7 +23,8 @@ let state = {
             {message: 'Hey'},
             {message: 'How u?'},
             {message: 'Hafanana'}
-        ]
+        ],
+        newMessageText: ""
     },
     navbarBlock: {
         friends: [
@@ -34,7 +35,7 @@ let state = {
     }
 }
 
-window.state=state
+window.state = state
 
 export let addPost = (postMessage) => {
     // debugger;
@@ -49,6 +50,21 @@ export let addPost = (postMessage) => {
 export let UpDatePostArea = (newText) => {
     state.profilePage.newPostText = newText
     rerenderEntireTree(state);
+}
+
+export let AddMessage = (textMessage) => {
+    if (state.dialogsPage.newMessageText !== "") {
+        let newMessage = {message: textMessage};
+        state.dialogsPage.messages.push(newMessage);
+        state.dialogsPage.newMessageText = ""
+        rerenderEntireTree(state);
+    }
+}
+
+
+export let UpDateMessageArea = (newText) => {
+    state.dialogsPage.newMessageText = newText
+    rerenderEntireTree(state)
 }
 
 
