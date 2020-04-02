@@ -7,7 +7,8 @@ let state = {
             {id: '2', message: 'This is post2', likesCount: '24'},
             {id: '3', message: 'This is post3', likesCount: '4'},
             {id: '4', message: 'This is post4', likesCount: '12'}
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogs: [
@@ -24,21 +25,31 @@ let state = {
             {message: 'Hafanana'}
         ]
     },
-    navbarBlock:{
-        friends:[
-            {id: '1', name:'Andrey'},
-            {id: '1', name:'Sasha'},
-            {id: '1', name:'Sveta'}
+    navbarBlock: {
+        friends: [
+            {id: '1', name: 'Andrey'},
+            {id: '1', name: 'Sasha'},
+            {id: '1', name: 'Sveta'}
         ]
     }
 }
 
-export let addPost=(postMessage)=>{
-    // debugger;
-    let newPost={id: 5, message: postMessage, likesCount: 0}
-    state.profilePage.posts.push(newPost)
+window.state=state
 
+export let addPost = (postMessage) => {
+    // debugger;
+    if (state.profilePage.newPostText !== "") {
+        let newPost = {id: 5, message: postMessage, likesCount: 0}
+        state.profilePage.posts.push(newPost)
+        state.profilePage.newPostText = ""
+        rerenderEntireTree(state);
+    }
+}
+
+export let UpDatePostArea = (newText) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state);
 }
+
 
 export default state;

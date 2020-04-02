@@ -12,7 +12,9 @@ const Profile = (props) => {
             <div className={p.flexContainer}>
                 <ProfilePicture/>
                 <ProfileInformation/>
-                <MyPosts posts={props.state.posts} addPost={props.addPost}/>
+                <MyPosts profilePage={props.profilePage}
+                         UpDatePostArea={props.UpDatePostArea}
+                         addPost={props.addPost}/>
             </div>
         </div>
     )

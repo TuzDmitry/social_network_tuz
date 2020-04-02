@@ -6,27 +6,39 @@ import Post from "./Post/Post";
 const MyPosts = (props) => {
 
 
-    let postsElements = props.posts.map((post) => <Post message={post.message} likes={post.likesCount}/>)
+    let postsElements = props.profilePage.posts.map((post) => <Post message={post.message} likes={post.likesCount}/>)
 
 
-    let newTitleRef = React.createRef();
-
+    // let newTitleRef = React.createRef();////////////////////////////временно закоменчен
 
 
     let addPost = () => {
         // debugger;
-        let text = newTitleRef.current.value;
-        // alert(newText);
-        props.addPost(text)
-        newTitleRef.current.value="";
+        // let text = newTitleRef.current.value; ///////////старая строка
+        // props.addPost(text)
+        props.addPost(props.profilePage.newPostText)
+        // newTitleRef.current.value="";   ////////////////////////////временно закоменчен
+    }
+
+    let onChangePost = (e) => {
+        props.UpDatePostArea(e.currentTarget.value)
+        // debugger;
+
     }
 
     return (
         <div className={pb.posts_block}>
             <h2>My Posts</h2>
             <div className='new_post'>
-                <label >New Post</label>
-                <textarea ref={newTitleRef} className={pb.textarea_new_post} ></textarea>
+                <label>New Post</label>
+                <textarea
+                    // ref={newTitleRef}     /////////////////////////////временно закоменчен
+                    value={props.profilePage.newPostText}
+                    placeholder={'Пишите свой новый пост здесь'}
+                    onChange={onChangePost}
+                    className={pb.textarea_new_post}>
+
+                </textarea>
                 <button onClick={addPost}>Send</button>
             </div>
             <div className='posts'>
