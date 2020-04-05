@@ -1,5 +1,9 @@
-import {rerenderEntireTree} from "../render";
+// import {rerenderEntireTree} from "../render";
 
+/////ф-я пустышка
+let rerenderEntireTree=()=>{
+    console.log('Heeeeyyy');
+}
 let state = {
     profilePage: {
         posts: [
@@ -65,6 +69,12 @@ export let AddMessage = (textMessage) => {
 export let UpDateMessageArea = (newText) => {
     state.dialogsPage.newMessageText = newText
     rerenderEntireTree(state)
+}
+
+/////создали +экспортировали ф-ю которая после вызова педала нам в параметрах ф-ю перерисовки дерева.
+export const subscribe=(observer)=>{
+    /////////перезаписали значение переменной (ф-и пустышки) на ф-ю перерисовки дерева
+    rerenderEntireTree=observer;
 }
 
 
