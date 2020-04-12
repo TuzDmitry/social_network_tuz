@@ -38,12 +38,12 @@ let store = {
     getState() {
         return this._state;
     },
-    _rerenderEntireTree() {
+    _callSubscriber() {
     },
     /////создали +экспортировали ф-ю которая после вызова педала нам в параметрах ф-ю перерисовки дерева.
     subscribe(observer) {
         /////////перезаписали значение переменной (ф-и пустышки) на ф-ю перерисовки дерева
-        this._rerenderEntireTree = observer;
+        this._callSubscriber = observer;
     },
 
     addPost(postMessage) {
@@ -51,24 +51,24 @@ let store = {
             let newPost = {id: 5, message: postMessage, likesCount: 0}
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ""
-            this._rerenderEntireTree();
+            this._callSubscriber();
         }
     },
     UpDatePostArea(newText) {
         this._state.profilePage.newPostText = newText
-        this._rerenderEntireTree();
+        this._callSubscriber();
     },
     AddMessage(textMessage) {
         if (this._state.dialogsPage.newMessageText !== "") {
             let newMessage = {message: textMessage};
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessageText = ""
-            this._rerenderEntireTree();
+            this._callSubscriber();
         }
     },
     UpDateMessageArea(newText) {
         this._state.dialogsPage.newMessageText = newText
-        this._rerenderEntireTree();
+        this._callSubscriber();
     }
 }
 
