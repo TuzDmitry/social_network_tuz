@@ -13,17 +13,16 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
-        // debugger;
-        // let text = newTitleRef.current.value; ///////////старая строка
-        // props.addPost(text)
-        props.addPost(props.profilePage.newPostText)
-        // newTitleRef.current.value="";   ////////////////////////////временно закоменчен
+        // props.addPost()
+        props.dispatch({type: 'ADD-POST'})
     }
 
     let onChangePost = (e) => {
-        props.UpDatePostArea(e.currentTarget.value)
+        let text=e.currentTarget.value;
+        // props.UpDatePostArea(text)
+        let action = {type: 'UPADATE-NEW-POST-TEXT', newText:text};
+        props.dispatch(action);
         // debugger;
-
     }
 
     return (

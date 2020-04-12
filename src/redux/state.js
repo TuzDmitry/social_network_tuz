@@ -35,10 +35,10 @@ let store = {
             ]
         }
     },
+    _callSubscriber() {},
+
     getState() {
         return this._state;
-    },
-    _callSubscriber() {
     },
     /////создали +экспортировали ф-ю которая после вызова педала нам в параметрах ф-ю перерисовки дерева.
     subscribe(observer) {
@@ -46,9 +46,9 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost(postMessage) {
+    addPost() {
         if (this._state.profilePage.newPostText !== "") {
-            let newPost = {id: 5, message: postMessage, likesCount: 0}
+            let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0}
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ""
             this._callSubscriber();
@@ -58,9 +58,9 @@ let store = {
         this._state.profilePage.newPostText = newText
         this._callSubscriber();
     },
-    AddMessage(textMessage) {
+    AddMessage() {
         if (this._state.dialogsPage.newMessageText !== "") {
-            let newMessage = {message: textMessage};
+            let newMessage = {message: this._state.dialogsPage.newMessageText};
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessageText = ""
             this._callSubscriber();
@@ -69,6 +69,29 @@ let store = {
     UpDateMessageArea(newText) {
         this._state.dialogsPage.newMessageText = newText
         this._callSubscriber();
+    },
+    dispatch(action){//{type: 'ADD-POST', данные которые нам нужны для этого экшена: blabla}
+        if(action.type==='ADD-POST'){
+            if (this._state.profilePage.newPostText !== "") {
+                let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0}
+                this._state.profilePage.posts.push(newPost)
+                this._state.profilePage.newPostText = ""
+                this._callSubscriber();
+            }
+        } else if (action.type==='UPADATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber();
+        } else if (action.type==='ADD-MESSAGE'){
+            if (this._state.dialogsPage.newMessageText !== "") {
+                let newMessage = {message: this._state.dialogsPage.newMessageText};
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = ""
+                this._callSubscriber();
+            }
+        } else if (action.type==='UPADATE-NEW-MESSAGE-TEXT'){
+            this._state.dialogsPage.newMessageText = action.newText
+            this._callSubscriber();
+        }
     }
 }
 

@@ -13,8 +13,9 @@ const Profile = (props) => {
                 <ProfilePicture/>
                 <ProfileInformation/>
                 <MyPosts profilePage={props.profilePage}
-                         UpDatePostArea={props.UpDatePostArea}
-                         addPost={props.addPost}/>
+                         // UpDatePostArea={props.UpDatePostArea}
+                         // addPost={props.addPost}
+                         dispatch={props.dispatch}/>
             </div>
         </div>
     )

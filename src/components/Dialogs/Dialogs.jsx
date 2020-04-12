@@ -14,15 +14,14 @@ const Dialogs = (props) => {
 
 
     let AddMessage = () => {
-        // let newMessageElement = textAreasref.current.value;
-        let newMessageElement = props.dialogsPage.newMessageText;
-        // alert(newMessageElement);
-        // textAreasref.current.value = "";
-        props.AddMessage(newMessageElement)
+        // props.AddMessage()
+        props.dispatch({type: 'ADD-MESSAGE'})
     }
 
     let onChangeTextArea = (e) => {
-        props.UpDateMessageArea(e.currentTarget.value)
+        let text=e.currentTarget.value;
+        // props.UpDateMessageArea(text)
+        props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
     }
 
 
