@@ -1,7 +1,15 @@
 import React from "react";
 import pb from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {addPostActionCreator, upDateNewPostTextActionCreator} from "../../../redux/state";
 
+// const addPostActionCreator=()=>{
+//     return {type: 'ADD-POST'}
+// }
+//
+// const upDateNewPostTextActionCreator=(text)=>{
+//     return {type: 'UPADATE-NEW-POST-TEXT', newText:text}
+// }
 
 const MyPosts = (props) => {
 
@@ -14,15 +22,17 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         // props.addPost()
-        props.dispatch({type: 'ADD-POST'})
+        // props.dispatch({type: 'ADD-POST'})
+        let action=addPostActionCreator()
+        props.dispatch(action)
     }
 
     let onChangePost = (e) => {
         let text=e.currentTarget.value;
-        // props.UpDatePostArea(text)
-        let action = {type: 'UPADATE-NEW-POST-TEXT', newText:text};
+        // props.UpDatePostArea(text)  ///1)старый вызов метода для действия на изменение вводимого поля для поста
+        // let action = {type: 'UPADATE-NEW-POST-TEXT', newText:text};   ////2) для диспача
+        let action=upDateNewPostTextActionCreator(text)  ///3) через ACtionCreator-функцию которая находится в стейт
         props.dispatch(action);
-        // debugger;
     }
 
     return (

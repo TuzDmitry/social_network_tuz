@@ -2,26 +2,30 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {addMessageActionCreator, upDateNewMessageTextActionCreator} from "../../redux/state";
 
+/////////ВЫНЕСЛИ В СТЕЙТ И ПОТОМ ЭКСПОРТИРОВАЛИ........
+// const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'})
+// const upDateNewMessageTextActionCreator = (text) => ({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
 
 const Dialogs = (props) => {
-
 
     let dialogsElements = props.dialogsPage.dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.dialogsPage.messages.map((text) => <Message message={text.message}/>)
 
-    // let textAreasref = React.createRef();
-
-
-    let AddMessage = () => {
-        // props.AddMessage()
-        props.dispatch({type: 'ADD-MESSAGE'})
+    let addMessage = () => {
+        // props.addMessage()
+        // props.dispatch({type: 'ADD-MESSAGE'})
+        let action=addMessageActionCreator()
+        props.dispatch(action)
     }
 
     let onChangeTextArea = (e) => {
         let text=e.currentTarget.value;
         // props.UpDateMessageArea(text)
-        props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
+        // props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
+        let action=upDateNewMessageTextActionCreator(text)
+        props.dispatch(action)
     }
 
 
@@ -49,7 +53,7 @@ const Dialogs = (props) => {
                             ></textarea>
                         </div>
                         <div>
-                            <button onClick={AddMessage}>Отправить</button>
+                            <button onClick={addMessage}>Отправить</button>
                         </div>
                     </div>
                 </div>

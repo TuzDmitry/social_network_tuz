@@ -17,7 +17,7 @@ let rerenderEntireTree = () => {
                  ////поэтому мы должны изспользовать метод bind который как раз и передаст нам этот нужный контест
                  //addPost={store.addPost.bind(store)}
                  //UpDatePostArea={store.UpDatePostArea.bind(store)}
-                 //AddMessage={store.AddMessage.bind(store)}
+                 //AddMessage={store.addMessage.bind(store)}
                  //UpDateMessageArea={store.UpDateMessageArea.bind(store)}
                  dispatch={store.dispatch.bind(store)}
             />
