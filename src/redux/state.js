@@ -1,9 +1,8 @@
 /////закинули наши стейт и методы в объект
 //// _data - означает что это для приватного использования
-const ADD_POST='ADD-POST';
-const UPADATE_NEW_POST_TEXT='UPADATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPADATE_NEW_MESSAGE_TEXT = 'UPADATE-NEW-MESSAGE-TEXT';
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import navBarReducer from "./navBarReducer";
 
 let store = {
     _state: {
@@ -51,60 +50,37 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost() {
-        if (this._state.profilePage.newPostText !== "") {
-            let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0}
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber();
-        }
-    },
-    UpDatePostArea(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber();
-    },
-    addMessage() {
-        if (this._state.dialogsPage.newMessageText !== "") {
-            let newMessage = {message: this._state.dialogsPage.newMessageText};
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = ""
-            this._callSubscriber();
-        }
-    },
-    UpDateMessageArea(newText) {
-        this._state.dialogsPage.newMessageText = newText
-        this._callSubscriber();
-    },
+    // addPost() {
+    //     if (this._state.profilePage.newPostText !== "") {
+    //         let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0}
+    //         this._state.profilePage.posts.push(newPost)
+    //         this._state.profilePage.newPostText = ""
+    //         this._callSubscriber();
+    //     }
+    // },
+    // UpDatePostArea(newText) {
+    //     this._state.profilePage.newPostText = newText
+    //     this._callSubscriber();
+    // },
+    // addMessage() {
+    //     if (this._state.dialogsPage.newMessageText !== "") {
+    //         let newMessage = {message: this._state.dialogsPage.newMessageText};
+    //         this._state.dialogsPage.messages.push(newMessage);
+    //         this._state.dialogsPage.newMessageText = ""
+    //         this._callSubscriber();
+    //     }
+    // },
+    // UpDateMessageArea(newText) {
+    //     this._state.dialogsPage.newMessageText = newText
+    //     this._callSubscriber();
+    // },
 
     dispatch(action){//{type: 'ADD-POST', данные которые нам нужны для этого экшена: blabla}
-        if(action.type===ADD_POST){
-            if (this._state.profilePage.newPostText !== "") {
-                let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0}
-                this._state.profilePage.posts.push(newPost)
-                this._state.profilePage.newPostText = ""
-                this._callSubscriber();
-            }
-        } else if (action.type===UPADATE_NEW_POST_TEXT){
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber();
-        } else if (action.type===ADD_MESSAGE){
-            if (this._state.dialogsPage.newMessageText !== "") {
-                let newMessage = {message: this._state.dialogsPage.newMessageText};
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.newMessageText = ""
-                this._callSubscriber();
-            }
-        } else if (action.type===UPADATE_NEW_MESSAGE_TEXT){
-            this._state.dialogsPage.newMessageText = action.newText
-            this._callSubscriber();
-        }
+        profileReducer(this._state.profilePage, action);
+        dialogsReducer(this._state.dialogsPage, action);
+        navBarReducer (this._state.navbarBlock, action);
+        this._callSubscriber();
     }
 }
-
-export const addPostActionCreator=()=>({type: ADD_POST})
-export const upDateNewPostTextActionCreator=(text)=>({type: UPADATE_NEW_POST_TEXT, newText:text})
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const upDateNewMessageTextActionCreator = (text) => ({type: UPADATE_NEW_MESSAGE_TEXT, newText:text})
 
 export default store;

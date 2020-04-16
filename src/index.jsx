@@ -13,7 +13,7 @@ let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App state={state}
-                 ////store.addPost.bind(store)- означает что мы берем метод из стора который при вызове требует контекст
+                 ////store.method.bind(store)- означает что мы берем метод из стора который при вызове требует контекст
                  ////поэтому мы должны изспользовать метод bind который как раз и передаст нам этот нужный контест
                  //addPost={store.addPost.bind(store)}
                  //UpDatePostArea={store.UpDatePostArea.bind(store)}

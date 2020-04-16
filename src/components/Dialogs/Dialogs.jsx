@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, upDateNewMessageTextActionCreator} from "../../redux/state";
+import {addMessageActionCreator, upDateNewMessageTextActionCreator} from "../../redux/dialogsReducer";
 
 /////////ВЫНЕСЛИ В СТЕЙТ И ПОТОМ ЭКСПОРТИРОВАЛИ........
 // const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'})
