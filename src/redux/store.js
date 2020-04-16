@@ -76,9 +76,9 @@ let store = {
     // },
 
     dispatch(action){//{type: 'ADD-POST', данные которые нам нужны для этого экшена: blabla}
-        profileReducer(this._state.profilePage, action);
-        dialogsReducer(this._state.dialogsPage, action);
-        navBarReducer (this._state.navbarBlock, action);
+        this._state.profilePage=profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage=dialogsReducer(this._state.dialogsPage, action);
+        this._state.navbarBlock=navBarReducer (this._state.navbarBlock, action);
         this._callSubscriber();
     }
 }

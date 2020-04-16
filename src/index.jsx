@@ -1,6 +1,6 @@
 
 import * as serviceWorker from './serviceWorker';
-import store from './redux/state';
+import store from './redux/store';
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import './index.css';
@@ -23,9 +23,9 @@ let rerenderEntireTree = () => {
             />
         </BrowserRouter>, document.getElementById('root'));
 }
-//////отрисовали дерево, передав ф-и стейт (который импортировали из state.js)
+//////отрисовали дерево, передав ф-и стейт (который импортировали из store.js)
 rerenderEntireTree();
-///////вызвали переданную ф-ю из state.js, передав ей в параметрах ф-ю отрисовки дерева
+///////вызвали переданную ф-ю из store.js, передав ей в параметрах ф-ю отрисовки дерева
 store.subscribe(rerenderEntireTree);
 
 
