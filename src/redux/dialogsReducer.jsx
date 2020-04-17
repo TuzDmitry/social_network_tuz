@@ -1,7 +1,24 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPADATE_NEW_MESSAGE_TEXT = 'UPADATE-NEW-MESSAGE-TEXT';
 
-const dialogsReducer = (state, action) => {
+let initialState={
+    dialogs: [
+        {name: 'Dima', id: '1'},
+        {name: 'Tanya', id: '2'},
+        {name: 'Dasha', id: '3'},
+        {name: 'Kolya', id: '4'},
+        {name: 'Gora', id: '5'},
+        {name: 'Pahsa', id: '6'},
+    ],
+        messages: [
+        {message: 'Hey'},
+        {message: 'How u?'},
+        {message: 'Hafanana'}
+    ],
+        newMessageText: ""
+};
+
+const dialogsReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             if (state.newMessageText !== "") {
