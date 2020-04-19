@@ -2,7 +2,7 @@ import React from "react";
 import p from './Profile.module.css';
 import ProfilePicture from "./Picture/ProfilePicture";
 import ProfileInformation from "./MyInfo/ProfileInformation";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
 
@@ -12,10 +12,11 @@ const Profile = (props) => {
             <div className={p.flexContainer}>
                 <ProfilePicture/>
                 <ProfileInformation/>
-                <MyPosts profilePage={props.profilePage}
-                         // UpDatePostArea={props.UpDatePostArea}
-                         // addPost={props.addPost}
-                         dispatch={props.dispatch}/>
+                <MyPostsContainer
+                    store={props.store} /////докидываем стор прямо до контейнерной компоненты и только в ней уже начинаем забирать , что нам нужно
+                    // profilePage={props.profilePage}
+                    //      dispatch={props.dispatch}
+                />
             </div>
         </div>
     )

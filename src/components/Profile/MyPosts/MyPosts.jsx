@@ -13,26 +13,22 @@ import {addPostActionCreator, upDateNewPostTextActionCreator} from "../../../red
 
 const MyPosts = (props) => {
 
-
-    let postsElements = props.profilePage.posts.map((post) => <Post message={post.message} likes={post.likesCount}/>)
-
-
-    // let newTitleRef = React.createRef();////////////////////////////временно закоменчен
+    let postsElements = props.posts.map((post) => <Post message={post.message} likes={post.likesCount}/>)
 
 
-    let addPost = () => {
-        // props.addPost()
+    let onAddPost = () => {
+        props.addPost()
         // props.dispatch({type: 'ADD-POST'})
-        let action=addPostActionCreator()
-        props.dispatch(action)
+        // let action=addPostActionCreator()
+        // props.dispatch(action)
     }
 
     let onChangePost = (e) => {
         let text=e.currentTarget.value;
-        // props.UpDatePostArea(text)  ///1)старый вызов метода для действия на изменение вводимого поля для поста
+        props.UpDatePostArea(text)  ///1)старый вызов метода для действия на изменение вводимого поля для поста
         // let action = {type: 'UPADATE-NEW-POST-TEXT', newText:text};   ////2) для диспача
-        let action=upDateNewPostTextActionCreator(text)  ///3) через ACtionCreator-функцию которая находится в стейт
-        props.dispatch(action);
+        // let action=upDateNewPostTextActionCreator(text)  ///3) через ACtionCreator-функцию которая находится в стейт
+        // props.dispatch(action);
     }
 
     return (
@@ -41,14 +37,12 @@ const MyPosts = (props) => {
             <div className='new_post'>
                 <label>New Post</label>
                 <textarea
-                    // ref={newTitleRef}     /////////////////////////////временно закоменчен
-                    value={props.profilePage.newPostText}
+                    value={props.newPostText}
                     placeholder={'Пишите свой новый пост здесь'}
                     onChange={onChangePost}
                     className={pb.textarea_new_post}>
-
                 </textarea>
-                <button onClick={addPost}>Send</button>
+                <button onClick={onAddPost}>Send</button>
             </div>
             <div className='posts'>
                 {postsElements}

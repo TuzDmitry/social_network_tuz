@@ -14,18 +14,18 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messages.map((text) => <Message message={text.message}/>)
 
     let addMessage = () => {
-        // props.addMessage()
+        props.addMessage()
         // props.dispatch({type: 'ADD-MESSAGE'})
-        let action=addMessageActionCreator()
-        props.dispatch(action)
+        // let action=addMessageActionCreator()
+        // props.dispatch(action)
     }
 
     let onChangeTextArea = (e) => {
         let text=e.currentTarget.value;
-        // props.UpDateMessageArea(text)
+        props.UpDateMessageArea(text)
         // props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
-        let action=upDateNewMessageTextActionCreator(text)
-        props.dispatch(action)
+        // let action=upDateNewMessageTextActionCreator(text)
+        // props.dispatch(action)
     }
 
 
