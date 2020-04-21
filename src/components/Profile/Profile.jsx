@@ -13,9 +13,9 @@ const Profile = (props) => {
                 <ProfilePicture/>
                 <ProfileInformation/>
                 <MyPostsContainer
-                    store={props.store} /////докидываем стор прямо до контейнерной компоненты и только в ней уже начинаем забирать , что нам нужно
-                    // profilePage={props.profilePage}
-                    //      dispatch={props.dispatch}
+                    // store={props.store} /////докидываем стор прямо до контейнерной компоненты и только в ней уже начинаем забирать , что нам нужно
+                    //- profilePage={props.profilePage}
+                    //-      dispatch={props.dispatch}
                 />
             </div>
         </div>

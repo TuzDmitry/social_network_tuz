@@ -3,7 +3,8 @@ import eff from './Friends.module.css';
 import Friend from "./Friend/Friend";
 
 const Friends=(props)=> {
-    let friendsElements=props.state.friends.map((friend)=><Friend name={friend.name} id={friend.id}/>)
+    debugger
+    let friendsElements=props.state.navbarBlock.friends.map((friend)=><Friend name={friend.name} id={friend.id}/>)
 
     return (
         <div className={eff.friendsblock}>

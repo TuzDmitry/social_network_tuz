@@ -16,18 +16,21 @@ const App = (props) => {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar state={props.state.navbarBlock}/>
+            <Navbar
+                // state={props.state.navbarBlock}
+            />
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={() => <DialogsContainer store={props.store}
-
-                                                              // dialogsPage={props.state.dialogsPage}
-                                                              // dispatch={props.dispatch}
+                <Route path='/dialogs' render={() => <DialogsContainer
+                                                              // store={props.store}
+                                                              //- dialogsPage={props.state.dialogsPage}
+                                                              //- dispatch={props.dispatch}
                 />}/>
 
-                <Route path='/profile' render={() => <Profile store={props.store}
+                <Route path='/profile' render={() => <Profile
+                                                               // store={props.store}
                     /////докидываем стор прямо до контейнерной компоненты и только в ней уже начинаем забирать , что нам нужно
-                                                              // profilePage={props.state.profilePage}
-                                                              // dispatch={props.dispatch}
+                                                              //- profilePage={props.state.profilePage}
+                                                              //- dispatch={props.dispatch}
                 />}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
