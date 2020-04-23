@@ -46,9 +46,6 @@ const MyPosts = (props) => {
             </div>
             <div className='posts'>
                 {postsElements}
-                {/*<Post message={postsData[0].containText} likes={postsData[0].likesCount}/>*/}
-                {/*<Post message={postsData[1].containText} likes={postsData[1].likesCount}/>*/}
-                {/*<Post message='It is my fisrt post' likes='3'/>*/}
             </div>
         </div>
     )

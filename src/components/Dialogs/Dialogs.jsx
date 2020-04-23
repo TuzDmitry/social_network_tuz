@@ -34,20 +34,14 @@ const Dialogs = (props) => {
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
                     {dialogsElements}
-                    {/*<DialogItem name={dialogsData[0].name}/>*/}
-                    {/*<DialogItem name="Kolya" id="4"/>*/}
                 </div>
                 <div>
                     <div className={s.messages}>
                         {messagesElements}
-                        {/*<Message message={messagesData[0].name}/>*/}
-                        {/*<Message message="whats up"/>*/}
-                        {/*<div className={s.message}>whats up</div>*/}
                     </div>
                     <div className={s.sendingMessageBlock}>
                         <div>
                             <textarea placeholder={'Напишите что-нибудь'}
-                                      // ref={textAreasref}
                                       onChange={onChangeTextArea}
                                       value={props.dialogsPage.newMessageText}
                             ></textarea>

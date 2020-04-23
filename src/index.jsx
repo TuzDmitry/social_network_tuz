@@ -5,7 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 import './index.css';
 import App from "./App";
 import React from "react";
-import {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
+
 
 let state = store.getState();
 //////////////Обернули нашу отрисовку дерева в ф-ю
