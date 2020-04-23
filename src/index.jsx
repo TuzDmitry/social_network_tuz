@@ -10,7 +10,7 @@ import {Provider} from "react-redux";
 
 let state = store.getState();
 //////////////Обернули нашу отрисовку дерева в ф-ю
-let rerenderEntireTree = () => {
+// let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -27,11 +27,11 @@ let rerenderEntireTree = () => {
                 />
             </Provider>
         </BrowserRouter>, document.getElementById('root'));
-}
+// }
 //////отрисовали дерево, передав ф-и стейт (который импортировали из store.js)
-rerenderEntireTree();
+// rerenderEntireTree();
 ///////вызвали переданную ф-ю из store.js, передав ей в параметрах ф-ю отрисовки дерева
-store.subscribe(rerenderEntireTree);
+// store.subscribe(rerenderEntireTree);
 
 
 // If you want your app to work offline and load faster, you can change
