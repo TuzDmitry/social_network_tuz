@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPADATE_NEW_POST_TEXT = 'UPADATE-NEW-POST-TEXT';
 
-let initialState={
+let initialState = {
     posts: [
         {id: '1', message: 'This is post1', likesCount: '21'},
         {id: '2', message: 'This is post2', likesCount: '24'},
@@ -11,23 +11,24 @@ let initialState={
     newPostText: ''
 };
 
-const profileReducer = (state=initialState, action) => {
-    debugger;
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:{
-            let stateCopy={...state};
+        case ADD_POST:
             if (state.newPostText !== "") {
                 let newPost = {id: 5, message: state.newPostText, likesCount: 0};
-                stateCopy.posts=[...state.posts]
-                stateCopy.posts.push(newPost)
-                stateCopy.newPostText = ""
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ""
+                };
             }
-            return stateCopy;}
-        case UPADATE_NEW_POST_TEXT:{
-            let stateCopy={...state};
-            stateCopy.newPostText=action.newText;
-            // state.newPostText = action.newText
-            return stateCopy;}
+
+        case UPADATE_NEW_POST_TEXT: {
+            return {
+                ...state,
+                newPostText: action.newText
+            };
+        }
         default:
             return state;
     }

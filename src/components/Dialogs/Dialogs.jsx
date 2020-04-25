@@ -10,8 +10,11 @@ import {addMessageActionCreator, upDateNewMessageTextActionCreator} from "../../
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map((dialog) => <DialogItem name={dialog.name} id={dialog.id}/>)
-    let messagesElements = props.dialogsPage.messages.map((text) => <Message message={text.message}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map((dialog) => <DialogItem key={dialog.id}
+                                                                                name={dialog.name}
+                                                                                id={dialog.id}/>)
+    let messagesElements = props.dialogsPage.messages.map((text) => <Message key={text.id}
+                                                                             message={text.message}/>)
 
     let addMessage = () => {
         props.addMessage()
@@ -21,7 +24,7 @@ const Dialogs = (props) => {
     }
 
     let onChangeTextArea = (e) => {
-        let text=e.currentTarget.value;
+        let text = e.currentTarget.value;
         props.UpDateMessageArea(text)
         // props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
         // let action=upDateNewMessageTextActionCreator(text)
