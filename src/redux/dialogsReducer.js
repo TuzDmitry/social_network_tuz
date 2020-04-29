@@ -19,7 +19,6 @@ let initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
-    let stateCopy;
 
     switch (action.type) {
         case ADD_MESSAGE:
@@ -31,7 +30,6 @@ const dialogsReducer = (state = initialState, action) => {
                     newMessageText: ""
                 }
             }
-        // return stateCopy;
 
         // case ADD_MESSAGE:
         //     if (stateCopy.newMessageText !== "") {
