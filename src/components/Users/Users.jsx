@@ -1,8 +1,10 @@
 import React from "react";
+import User from "./User/User";
 let Users=(props)=>{
+    let a= props.users.map(user=> <User user={user}/>)
     return(
         <div>
-            Users
+            {a}
         </div>
     )
 }

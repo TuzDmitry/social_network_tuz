@@ -1,0 +1,16 @@
+.user{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+
+.ava{
+    height: 90px;
+    width: 90px;
+}
+
+.userInfo{
+    border: 2px dashed black;
+    width: 300px;
+    height: 80px;
+}
