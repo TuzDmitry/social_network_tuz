@@ -1,16 +1,46 @@
-.user{
+.user {
     display: flex;
     margin-bottom: 15px;
+    width: 400px;
+    justify-content: space-between;
 }
 
-
-.ava{
-    height: 90px;
-    width: 90px;
+.ava {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
 }
 
-.userInfo{
-    border: 2px dashed black;
+.btn {
+    display: block;
+    width: 70px;
+    margin: 0 auto;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
     width: 300px;
-    height: 80px;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.status {
+}
+
+.country {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.city {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
 }

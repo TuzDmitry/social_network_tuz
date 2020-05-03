@@ -5,22 +5,7 @@ const SET_USERS='SET_USERS'
 
 let initialState = {
     users: [
-        {
-            id: 1,
-            fullName: 'DmirtyK',
-            location: {city: 'Minsk', country: 'Belarus'},
-            status: 'I like football',
-            followed: false,
-            urlAvatar: 'https://www.tapeciarnia.pl/tapety/normalne/25407_david_duchovny_czarny_stroj_ciemne_wlosy.jpg'
-        },
-        {
-            id: 1,
-            fullName: 'DmirtyK',
-            location: {city: 'Minsk', country: 'Belarus'},
-            status: 'I like football',
-            followed: false,
-            urlAvatar: 'https://upload.wikimedia.org/wikipedia/commons/b/b6/Conor_McGregor,_UFC_189_World_Tour_London_(2).jpg'
-        },
+
     ]
 
 
