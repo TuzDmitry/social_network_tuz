@@ -4,13 +4,18 @@ import style from "./Users.module.css"
 import * as axios from "axios";
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+    ///метод вызывается только один раз
+    componentDidMount() {
+        console.log('я вмонтировалась -append(jsx to DOM)')
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users`).then((response) => {
             debugger;
             this.props.setUsers(response.data.items)
         });
+    }
+
+    componentWillUnmount() {
+        console.log('я отмонтировалась -i will delete(jsx from DOM)')
     }
 
     getUsers = () => {
@@ -40,8 +45,8 @@ class Users extends React.Component {
         }
     }
 
-    // a = this.props.users.map(user => <User user={user} follow={this.props.follow} unfollow={this.props.unfollow}/>)
     render() {
+        console.log('я отрендерилась- пришли новые пропсы')
         return (
             <div>
                 <div className={style.title}>Users</div>
