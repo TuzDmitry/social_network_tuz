@@ -1,12 +1,16 @@
 import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "../../redux/usersReducer";
 
 let mapStateToProps=(state)=>{
     return{
-        users: state.usersPage.users
+        users: state.usersPage.users,
         ////в функ-ую компоменту теперь придет массив с юзерами через пропсы под названием users
+
+        pageSize:state.usersPage.pageSize,
+        totalUsersCount:state.usersPage.totalUsersCount,
+        currentPage:state.usersPage.currentPage
     }
 }
 let mapDispatchToProps=(dispatch)=>{
@@ -22,7 +26,13 @@ let mapDispatchToProps=(dispatch)=>{
         setUsers: (users)=>{
             let action=setUsersAC(users);
             dispatch(action)
-        }
+        },
+        setPage:(currentpage)=>{
+            dispatch(setCurrentPageAC(currentpage))
+        },
+        setTotalUsersCount:(totalcount)=>{
+            dispatch(setTotalUsersCountAC(totalcount))
+        },
     }
 }
 // const UsersContainer=connect()(Users)
