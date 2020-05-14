@@ -19,14 +19,14 @@ class ProfileContainer extends React.Component {
     render() {
         debugger
         return (
-            <Profile {...this.props}/>
+            <Profile {...this.props} profile={this.props.profile}/>
         )
     }
 }
 
 let mapStateToProps=(state)=>{
     return(
-        state
+        {profile: state.profilePage.profile}
     )
 }
 

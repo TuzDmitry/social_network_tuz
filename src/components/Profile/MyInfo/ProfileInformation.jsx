@@ -2,15 +2,32 @@ import React from "react";
 import pi from './ProfileInformation.module.css';
 
 
-const ProfileInformation=()=> {
+const ProfileInformation=(props)=> {
     return (
         <div className={pi.profAva}>
-            <img src="https://i.pinimg.com/736x/8d/a5/48/8da5485220f54aff3bc0c15dbbd7a739.jpg" alt="your_photo"/>
+            <img src={props.profile.photos.large} alt="your_photo"/>
             <div className={pi.person_information}>
-                <h2>Tuz Dmitry <br/></h2>
-                Date of Birth: 27 July <br/>
-                Education: BNTU'11 <br/>
-                Web Site: https://it-kamasutra.com
+                <h2>{props.profile.fullName} <br/></h2>
+                <div>
+                    <h3>About me:</h3>
+                    <span>{props.profile.aboutMe}</span>
+                </div>
+                <div>
+                    <h3>My contacts:</h3>
+                    <div><b>facebook: </b>{props.profile.contacts.facebook}</div>
+                    <div><b>website: </b>{props.profile.contacts.website}</div>
+                    <div><b>vk:</b> {props.profile.contacts.vk}</div>
+                    <div><b>instagram:</b> {props.profile.contacts.instagram}</div>
+                    <div><b>github:</b> {props.profile.contacts.github}</div>
+                </div>
+                <div>
+                    Looking for a job???-{props.profile.lookingForAJob}
+                </div>
+
+
+                <div>Date of Birth: </div>
+                <div>Education: BNTU'11</div>
+                <div>Web Site: https://it-kamasutra.com</div>
             </div>
         </div>
     )

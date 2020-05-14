@@ -15,4 +15,5 @@ let reducers = combineReducers({
 
 let store = createStore(reducers);////создали объект store (автоматически имеющие методы getState(),subscribe(observer),dispatch(action))
 
+window.store=store;
 export default store;
