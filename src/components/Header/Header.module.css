@@ -1,5 +1,11 @@
 .header {
     background: chartreuse;
     grid-area: h;
+    display: flex;
+    justify-content: space-between;
 }
 .header img {width: 50px;}
+
+.loginBlock a{
+color: white;
+}
