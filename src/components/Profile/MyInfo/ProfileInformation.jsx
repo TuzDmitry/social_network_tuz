@@ -5,7 +5,7 @@ import pi from './ProfileInformation.module.css';
 const ProfileInformation=(props)=> {
     return (
         <div className={pi.profAva}>
-            <img src={props.profile.photos.large} alt="your_photo"/>
+            <img src={props.profile.photos.large} alt="NO_photo"/>
             <div className={pi.person_information}>
                 <h2>{props.profile.fullName} <br/></h2>
                 <div>

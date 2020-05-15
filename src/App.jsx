@@ -29,7 +29,10 @@ const App = (props) => {
                                                               //- dispatch={props.dispatch}
                 />}/>
 
-                <Route path='/profile' render={() => <ProfileContainer/>}/>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                {/*     :userId-даст нашему withRouter передать в пропсах компоненте информацию, что то идет после : является параметром userId   */}
+                {/*     :userId?-даст нашему withRouter --||--, что, то, что идет после : является опциональным параметром userId ...и может не придти  */}
+
                 <Route path='/users' render={() => <UsersContainer/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
