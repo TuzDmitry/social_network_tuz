@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 
 let User = (props) => {
     // let followed= (props.user.followed)? "Follow": "Unfollow";
-
+// debugger
     return (
         <div className={style.user}>
             <div className={style.avaAndFollow}>
@@ -18,7 +18,6 @@ let User = (props) => {
                 <button className={style.btn} onClick={() => props.follow(props.user.id)}>Follow</button>}
                 {props.user.followed &&
                 <button className={style.btn} onClick={() => props.unfollow(props.user.id)}>Unfollow</button>}
-                {/*<button className={style.btn} onClick={()=>props.unfollow(props.user.id)}>Unfollow</button>*/}
             </div>
             <div className={style.userInfo}>
                 <div>{props.user.name}</div>
