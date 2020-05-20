@@ -5,7 +5,7 @@ import {
     follow,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers,
+    setUsers, toggleIsAwaitingResponse,
     toggleIsFetching,
     unfollow
 } from "../../redux/usersReducer";
@@ -75,6 +75,7 @@ class UsersAPIComponent extends React.Component {
     }
 
     onFollowChanged = (userId) => {
+        this.props.toggleIsAwaitingResponse(userId,true)
         // debugger
         // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
         //     {},
@@ -90,6 +91,7 @@ class UsersAPIComponent extends React.Component {
                 if (data.resultCode == 0) {
                     this.props.follow(userId)
                 }
+                this.props.toggleIsAwaitingResponse(userId,false)
             })
     }
 
@@ -101,11 +103,13 @@ class UsersAPIComponent extends React.Component {
         //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
         //     }
         // )
+        this.props.toggleIsAwaitingResponse(userId,true)
         followAPI.unfollowUser(userId)
             .then((data) => {
                 if (data.resultCode == 0) {
                     this.props.unfollow(userId)
                 }
+                this.props.toggleIsAwaitingResponse(userId,false)
             })
     }
 
@@ -145,8 +149,10 @@ class UsersAPIComponent extends React.Component {
                        onPageChanged={this.onPageChanged}
                        currentPage={this.props.currentPage}
                        users={this.props.users}
+                       awaitingResponse={this.props.awaitingResponse}
                        follow={this.onFollowChanged}
                        unfollow={this.onUnfollowChanged}
+
 
                 />
             </>
@@ -161,7 +167,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        awaitingResponse: state.usersPage.awaitingResponse
     }
 }
 
@@ -199,6 +206,6 @@ let mapStateToProps = (state) => {
 //     }
 
 export default connect(mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersAPIComponent);
+    {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleIsAwaitingResponse})(UsersAPIComponent);
 
 

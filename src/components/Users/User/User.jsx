@@ -15,9 +15,9 @@ let User = (props) => {
                               alt="photo"/>
                 </NavLink>
                 {!props.user.followed &&
-                <button className={style.btn} onClick={() => props.follow(props.user.id)}>Follow</button>}
+                <button className={style.btn} disabled={props.awaitingResponse.some(id=> id==props.user.id)} onClick={() => props.follow(props.user.id)}>Follow</button>}
                 {props.user.followed &&
-                <button className={style.btn} onClick={() => props.unfollow(props.user.id)}>Unfollow</button>}
+                <button className={style.btn} disabled={props.awaitingResponse.some(id=> id==props.user.id)} onClick={() => props.unfollow(props.user.id)}>Unfollow</button>}
             </div>
             <div className={style.userInfo}>
                 <div>{props.user.name}</div>

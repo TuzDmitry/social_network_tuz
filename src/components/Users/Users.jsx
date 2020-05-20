@@ -21,6 +21,7 @@ const Users = (props) => {
 
             </div>
             <div className={style.usersContainer}>{props.users.map(user => <User user={user}
+                                                                                 awaitingResponse={props.awaitingResponse}
                                                                                  follow={props.follow}
                                                                                  unfollow={props.unfollow}/>)}</div>
         </div>
