@@ -12,6 +12,7 @@ import {
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
+import {followAPI, usersAPI} from "../../api/api";
 
 
 class UsersAPIComponent extends React.Component {
@@ -19,16 +20,17 @@ class UsersAPIComponent extends React.Component {
     componentDidMount() {
         console.log('я вмонтировалась -append(jsx to DOM)')
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-            {
-                withCredentials: true,
-                headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-            })
-            .then((response) => {
+
+
+
+        /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
+        usersAPI.getUsers(this.props.currentPage,this.props.pageSize)
+            .then((data) => {
                 // debugger;
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
             });
     }
 
@@ -62,15 +64,11 @@ class UsersAPIComponent extends React.Component {
         this.props.setCurrentPage(el)
         this.props.toggleIsFetching(true)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${el}&count=${this.props.pageSize}`,
-            {
-                withCredentials: true,
-                headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-            })
-            .then((response) => {
+        usersAPI.getUsers(el,this.props.pageSize)
+            .then((data) => {
                 // debugger;
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(data.items)
             })
         ;
 
@@ -78,16 +76,18 @@ class UsersAPIComponent extends React.Component {
 
     onFollowChanged = (userId) => {
         // debugger
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-            {},
-            {
-                withCredentials: true,
-                headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-            }
-        )
-            .then((response) => {
+        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+        //     {},
+        //     {
+        //         withCredentials: true,
+        //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
+        //     }
+        // )
+
+        followAPI.followUser(userId)
+            .then((data) => {
                 // debugger
-                if (response.data.resultCode == 0) {
+                if (data.resultCode == 0) {
                     this.props.follow(userId)
                 }
             })
@@ -95,14 +95,15 @@ class UsersAPIComponent extends React.Component {
 
     onUnfollowChanged = (userId) => {
         // debugger
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-            {
-                withCredentials: true,
-                headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-            }
-        )
-            .then((response) => {
-                if (response.data.resultCode == 0) {
+        // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+        //     {
+        //         withCredentials: true,
+        //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
+        //     }
+        // )
+        followAPI.unfollowUser(userId)
+            .then((data) => {
+                if (data.resultCode == 0) {
                     this.props.unfollow(userId)
                 }
             })
