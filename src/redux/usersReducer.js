@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'
@@ -15,7 +17,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    awaitingResponse:[]
+    awaitingResponse: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -71,10 +73,10 @@ const usersReducer = (state = initialState, action) => {
             }
         case TOGGLE_IS_AWAITING_RESPONSE:
             return {
-               ...state,
+                ...state,
                 awaitingResponse: action.awaitingResponse
-                    ?[...state.awaitingResponse, action.userId]
-                    : state.awaitingResponse.filter(id=> id!=action.userId)
+                    ? [...state.awaitingResponse, action.userId]
+                    : state.awaitingResponse.filter(id => id != action.userId)
             }
         default:
             return state;
@@ -88,7 +90,73 @@ export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentpage) => ({type: SET_CURRENT_PAGE, currentpage})
 export const setTotalUsersCount = (totalcount) => ({type: SET_TOTAL_USERS_COUNT, totalcount})
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
-export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({type: TOGGLE_IS_AWAITING_RESPONSE,userId, awaitingResponse})
+export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
+    type: TOGGLE_IS_AWAITING_RESPONSE,
+    userId,
+    awaitingResponse
+})
+
+////создадим санку getUsersThunk=(dispatch)=>{
+
+////заменим на thunk Creator
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
+        usersAPI.getUsers(currentPage, pageSize)
+            .then((data) => {
+                // debugger;
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+
+            });
+    }
+}
+
+
+export const changePageUsersTC = (el, pageSize) => {
+    return (dispatch) => {
+        dispatch(setCurrentPage(el))
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(el, pageSize)
+            .then((data) => {
+                // debugger;
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+            })
+        ;
+    }
+}
+
+
+export const followUserTC = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsAwaitingResponse(userId, true))
+
+        usersAPI.followUser(userId)
+            .then((data) => {
+                if (data.resultCode == 0) {
+                    dispatch(follow(userId))
+                }
+                dispatch(toggleIsAwaitingResponse(userId, false))
+            })
+    }
+}
+
+export const unfollowUserTC = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsAwaitingResponse(userId, true))
+        usersAPI.unfollowUser(userId)
+            .then((data) => {
+                if (data.resultCode == 0) {
+                    dispatch(unfollow(userId))
+                }
+                dispatch(toggleIsAwaitingResponse(userId, false))
+            })
+    }
+}
 
 
 export default usersReducer;

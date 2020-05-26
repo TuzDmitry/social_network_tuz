@@ -2,115 +2,90 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {
-    follow,
+    changePageUsersTC,
+    follow, followUserTC, getUsersThunkCreator,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleIsAwaitingResponse,
     toggleIsFetching,
-    unfollow
+    unfollow, unfollowUserTC
 } from "../../redux/usersReducer";
-import * as axios from "axios";
+
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-import {followAPI, usersAPI} from "../../api/api";
+// import {usersAPI} from "../../api/api";
 
 
 class UsersAPIComponent extends React.Component {
     ///метод вызывается только один раз
     componentDidMount() {
         console.log('я вмонтировалась -append(jsx to DOM)')
-        this.props.toggleIsFetching(true)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
 
 
-
+        // this.props.toggleIsFetching(true)
         /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
-        usersAPI.getUsers(this.props.currentPage,this.props.pageSize)
-            .then((data) => {
-                // debugger;
-                this.props.toggleIsFetching(false)
-
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            });
+        // usersAPI.getUsers(this.props.currentPage,this.props.pageSize)
+        //     .then((data) => {
+        //         // debugger;
+        //         this.props.toggleIsFetching(false)
+        //
+        //         this.props.setUsers(data.items)
+        //         this.props.setTotalUsersCount(data.totalCount)
+        //     });
     }
 
     componentWillUnmount() {
         console.log('я отмонтировалась -i will delete(jsx from DOM)')
     }
 
-    // getUsers = () => {
-    //     if (this.props.users.length === 0) {
-    //         axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
-    //             .then((response) => {
-    //             debugger;
-    //             this.props.setUsers(response.data.items)
-    //         });
-    //         // props.setUsers([
-    //         //     {
-    //         //         id: 0,
-    //         //         fullName: 'DmirtyT',
-    //         //         location: {city: 'Minsk', country: 'Belarus'},
-    //         //         status: 'I like swim',
-    //         //         followed: false,
-    //         //         urlAvatar: 'https://www.tapeciarnia.pl/tapety/normalne/25407_david_duchovny_czarny_stroj_ciemne_wlosy.jpg'
-    //         //     },
-    //         //
-    //         // ])
-    //     }
-    // }
 
-
-    onPageChanged = (el) => {
-        this.props.setCurrentPage(el)
-        this.props.toggleIsFetching(true)
-
-        usersAPI.getUsers(el,this.props.pageSize)
-            .then((data) => {
-                // debugger;
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-            })
-        ;
+    onPageChanged = (pageNumber) => {
+        // this.props.setCurrentPage(pageNumber)
+        //         // this.props.toggleIsFetching(true)
+        //         //
+        //         // usersAPI.getUsers(pageNumber, this.props.pageSize)
+        //         //     .then((data) => {
+        //         //         // debugger;
+        //         //         this.props.toggleIsFetching(false)
+        //         //         this.props.setUsers(data.items)
+        //         //     })
+        //         // ;
+        this.props.changePageUsers(pageNumber, this.props.pageSize)
 
     }
 
     onFollowChanged = (userId) => {
-        this.props.toggleIsAwaitingResponse(userId,true)
-        // debugger
-        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-        //     {},
-        //     {
-        //         withCredentials: true,
-        //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-        //     }
-        // )
+        // this.props.toggleIsAwaitingResponse(userId, true)
+        // usersAPI.followUser(userId)
+        //     .then((data) => {
+        //         // debugger
+        //         if (data.resultCode == 0) {
+        //             this.props.follow(userId)
+        //         }
+        //         this.props.toggleIsAwaitingResponse(userId, false)
+        //     })
 
-        followAPI.followUser(userId)
-            .then((data) => {
-                // debugger
-                if (data.resultCode == 0) {
-                    this.props.follow(userId)
-                }
-                this.props.toggleIsAwaitingResponse(userId,false)
-            })
+        this.props.followUser(userId)
     }
 
     onUnfollowChanged = (userId) => {
-        // debugger
-        // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-        //     {
-        //         withCredentials: true,
-        //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-        //     }
-        // )
-        this.props.toggleIsAwaitingResponse(userId,true)
-        followAPI.unfollowUser(userId)
-            .then((data) => {
-                if (data.resultCode == 0) {
-                    this.props.unfollow(userId)
-                }
-                this.props.toggleIsAwaitingResponse(userId,false)
-            })
+        // // debugger
+        // // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+        // //     {
+        // //         withCredentials: true,
+        // //         headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
+        // //     }
+        // // )
+        // this.props.toggleIsAwaitingResponse(userId, true)
+        // usersAPI.unfollowUser(userId)
+        //     .then((data) => {
+        //         if (data.resultCode == 0) {
+        //             this.props.unfollow(userId)
+        //         }
+        //         this.props.toggleIsAwaitingResponse(userId, false)
+        //     })
+        this.props.unfollowUser(userId)
     }
 
     render() {
@@ -125,23 +100,6 @@ class UsersAPIComponent extends React.Component {
 
 
         return (
-            // <div>
-            //     <div className={style.title}>Users</div>
-            //     <div>
-            //         {pages.map(el => {
-            //                 return <span onClick={()=>this.onPageChanged(el)}
-            //                              className={this.props.currentPage===el&&style.selectedPage}>{el}</span>
-            //         })}
-            //
-            //         {/*<span>1</span>*/}
-            //         {/*<span className={style.selectedPage}>2</span>*/}
-            //     </div>
-            //     <button onClick={this.getUsers}>GetUsers</button>
-            //     <div className={style.usersContainer}>{this.props.users.map(user => <User user={user}
-            //                                                                               follow={this.props.follow}
-            //                                                                               unfollow={this.props.unfollow}/>)}</div>
-            // </div>
-
             <>
                 {this.props.isFetching ? <Preloader/> : null}
                 <Users totalUsersCount={this.props.totalUsersCount}
@@ -172,29 +130,41 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             let action = followAC(userId);
-//             dispatch(action)
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setPage: (currentpage) => {
-//             dispatch(setCurrentPageAC(currentpage))
-//         },
-//         setTotalUsersCount: (totalcount) => {
-//             dispatch(setTotalUsersCountAC(totalcount))
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
+let mapDispatchToProps = (dispatch) => {
+    return {
+        // follow: (userId) => {
+        //     let action = follow(userId);
+        //     dispatch(action)
+        // },
+        // unfollow: (userId) => {
+        //     dispatch(unfollow(userId))
+        // },
+        // setUsers: (users) => {
+        //     dispatch(setUsers(users))
+        // },
+        // setCurrentPage: (currentpage) => {
+        //     dispatch(setCurrentPage(currentpage))
+        // },
+        // setTotalUsersCount: (totalcount) => {
+        //     dispatch(setTotalUsersCount(totalcount))
+        // },
+        // toggleIsFetching: (isFetching) => {
+        //     dispatch(toggleIsFetching(isFetching))
+        // },
+        getUsers: (currentPage, pageSize) => {
+            dispatch(getUsersThunkCreator(currentPage, pageSize))
+        },
+        changePageUsers: (pageNumber, pageSize) => {
+            dispatch(changePageUsersTC(pageNumber, pageSize))
+        },
+        followUser: (userId) => {
+            dispatch(followUserTC(userId))
+        },
+        unfollowUser: (userId) => {
+            dispatch(unfollowUserTC(userId))
+        }
+    }
+}
 
 // let mDTP = {
 //         follow,
@@ -205,7 +175,8 @@ let mapStateToProps = (state) => {
 //         toggleIsFetching
 //     }
 
-export default connect(mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleIsAwaitingResponse})(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
 
-
+// export default connect(mapStateToProps,
+//     {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleIsAwaitingResponse,
+//         getUsersThunkCreator})(UsersAPIComponent);
