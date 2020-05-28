@@ -47,7 +47,8 @@ import {connect} from "react-redux";
 ////react-redux -позволяет нам забыть про store.getState()/ store.dispatch и пользоваться сразу State/dispatch
 let mapStateToProps = (state) => {////MapStateToProps---ф-я превратить стейт в пропсы
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch) => {

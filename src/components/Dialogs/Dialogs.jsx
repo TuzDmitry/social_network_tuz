@@ -2,6 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Redirect} from "react-router-dom";
 
 /////////ВЫНЕСЛИ В СТЕЙТ И ПОТОМ ЭКСПОРТИРОВАЛИ........
 // const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'})
@@ -30,6 +31,9 @@ const Dialogs = (props) => {
         // props.dispatch(action)
     }
 
+// alert(props.isAuth)
+
+    if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div>
