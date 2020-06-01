@@ -7,25 +7,7 @@ const instance = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`
 })
 
-// export const getUsers = (currentPage = 1, pageSize = 10) => {
-//     /////мы должны вернуть из ф-и, то что нам отдал запрос (return)
-//     return axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-//         {
-//             withCredentials: true,
-//             headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-//         }).then(response => {
-//         return response.data
-//     })
-// }
-
-// export const getUsers = (currentPage = 1, pageSize = 10) => {
-//     /////мы должны вернуть из ф-и, то что нам отдал запрос (return)
-//     return instance.get(`users?page=${currentPage}&count=${pageSize}`,)
-//         .then(response => {
-//             return response.data
-//         })
-// }
-
+////Старые примеры, эволюция АПИ
 // export const followUser = (userId) => {
 //     return axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
 //         {},
@@ -46,24 +28,6 @@ const instance = axios.create({
 //     })
 // }
 
-
-// export const unfollowUser = (userId) => {
-//     return axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-//         {
-//             withCredentials: true,
-//             headers: {"API-KEY": "99d1b1eb-87ca-41b0-b4eb-5da7df0ab7de"}
-//         }
-//     ).then((response) => {
-//         return response.data
-//     })
-// }
-
-// export const unfollowUser = (userId) => {
-//     return instance.delete(`follow/${userId}`)
-//         .then((response) => {
-//             return response.data
-//         })
-// }
 
 
 export const usersAPI = {

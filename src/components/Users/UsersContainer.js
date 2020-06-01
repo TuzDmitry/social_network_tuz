@@ -3,17 +3,14 @@ import {connect} from "react-redux";
 
 import {
     changePageUsersTC,
-    follow, followUserTC, getUsersThunkCreator,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers, toggleIsAwaitingResponse,
-    toggleIsFetching,
-    unfollow, unfollowUserTC
+    followUserTC, getUsersThunkCreator,
+    unfollowUserTC
 } from "../../redux/usersReducer";
 
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-// import {usersAPI} from "../../api/api";
+import {withVerificationLogin} from "../../HOC/HOC";
+
 
 
 class UsersAPIComponent extends React.Component {
@@ -132,25 +129,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        // follow: (userId) => {
-        //     let action = follow(userId);
-        //     dispatch(action)
-        // },
-        // unfollow: (userId) => {
-        //     dispatch(unfollow(userId))
-        // },
-        // setUsers: (users) => {
-        //     dispatch(setUsers(users))
-        // },
-        // setCurrentPage: (currentpage) => {
-        //     dispatch(setCurrentPage(currentpage))
-        // },
-        // setTotalUsersCount: (totalcount) => {
-        //     dispatch(setTotalUsersCount(totalcount))
-        // },
-        // toggleIsFetching: (isFetching) => {
-        //     dispatch(toggleIsFetching(isFetching))
-        // },
+
         getUsers: (currentPage, pageSize) => {
             dispatch(getUsersThunkCreator(currentPage, pageSize))
         },
@@ -175,7 +154,7 @@ let mapDispatchToProps = (dispatch) => {
 //         toggleIsFetching
 //     }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withVerificationLogin(UsersAPIComponent));
 
 // export default connect(mapStateToProps,
 //     {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleIsAwaitingResponse,

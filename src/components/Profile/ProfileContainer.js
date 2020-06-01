@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getProfile} from "../../redux/profileReducer";
 import {Redirect, withRouter} from "react-router-dom";
+import {withVerificationLogin} from "../../HOC/HOC";
 
 // import {profileAPI} from "../../api/api";
 
@@ -25,7 +26,7 @@ class ProfileContainer extends React.Component {
 
     render() {
         // debugger
-        if(!this.props.isAuth) return <Redirect to={"/login"}/>
+        // if(!this.props.isAuth) return <Redirect to={"/login"}/>
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
@@ -34,12 +35,27 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
+        profile: state.profilePage.profile
     }
-
 }
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer)
+
+
+//  const AuthRedirectContainer=(props)=>{
+//     if(!props.isAuth) return <Redirect to={"/login"}/>
+//     return <ProfileContainer {...props}/>
+//  }
+// let withUrlDataContainerComponent = withRouter(AuthRedirectContainer)
+
+
+///создали HOC над ProfileContainer
+let AuthRedirectContainer=withVerificationLogin(ProfileContainer)
+
+
+let withUrlDataContainerComponent = withRouter(AuthRedirectContainer)
+
+
+
+// let withUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps, {getProfile})(withUrlDataContainerComponent)

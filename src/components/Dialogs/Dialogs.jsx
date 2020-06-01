@@ -4,9 +4,6 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
 
-/////////ВЫНЕСЛИ В СТЕЙТ И ПОТОМ ЭКСПОРТИРОВАЛИ........
-// const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'})
-// const upDateNewMessageTextActionCreator = (text) => ({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
 
 const Dialogs = (props) => {
 
@@ -18,22 +15,16 @@ const Dialogs = (props) => {
 
     let addMessage = () => {
         props.addMessage()
-        // props.dispatch({type: 'ADD-MESSAGE'})
-        // let action=addMessageActionCreator()
-        // props.dispatch(action)
     }
 
     let onChangeTextArea = (e) => {
         let text = e.currentTarget.value;
         props.UpDateMessageArea(text)
-        // props.dispatch({type: 'UPADATE-NEW-MESSAGE-TEXT', newText:text})
-        // let action=upDateNewMessageTextActionCreator(text)
-        // props.dispatch(action)
     }
 
 // alert(props.isAuth)
 
-    if(!props.isAuth) return <Redirect to={"/login"}/>
+    // if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div>

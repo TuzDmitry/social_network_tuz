@@ -35,7 +35,6 @@ const mapStateToProps=(state)=>{
     }
 }
 
-// export default HeaderContainer;
 
 export default connect(mapStateToProps,{setUserDataThunk})(HeaderContainer);
 

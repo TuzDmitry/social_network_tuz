@@ -25,7 +25,6 @@ const usersReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case FOLLOW:
-            // let stateCopy={...state, users: [...state.users]}
             return {
                 ...state,
                 users: state.users.map(user => {
@@ -51,7 +50,6 @@ const usersReducer = (state = initialState, action) => {
             debugger
             return {
                 ...state,
-                // users: [...state.users, ...action.users]
                 users: action.users
             }
         case SET_TOTAL_USERS_COUNT:
@@ -96,9 +94,8 @@ export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
     awaitingResponse
 })
 
-////создадим санку getUsersThunk=(dispatch)=>{
+////Thunk
 
-////заменим на thunk Creator
 export const getUsersThunkCreator = (currentPage, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
@@ -122,7 +119,6 @@ export const changePageUsersTC = (el, pageSize) => {
 
         usersAPI.getUsers(el, pageSize)
             .then((data) => {
-                // debugger;
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
             })
