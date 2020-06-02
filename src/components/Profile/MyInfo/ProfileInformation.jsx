@@ -1,5 +1,6 @@
 import React from "react";
 import pi from './ProfileInformation.module.css';
+import ProfileStatus from "../ProfileStatus";
 
 
 const ProfileInformation=(props)=> {
@@ -8,6 +9,8 @@ const ProfileInformation=(props)=> {
             <img src={props.profile.photos.large} alt="NO_photo"/>
             <div className={pi.person_information}>
                 <h2>{props.profile.fullName} <br/></h2>
+                <ProfileStatus/>
+
                 <div>
                     <h3>About me:</h3>
                     <span>{props.profile.aboutMe}</span>
