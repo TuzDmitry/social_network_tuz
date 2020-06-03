@@ -9,7 +9,7 @@ const ProfileInformation=(props)=> {
             <img src={props.profile.photos.large} alt="NO_photo"/>
             <div className={pi.person_information}>
                 <h2>{props.profile.fullName} <br/></h2>
-                <ProfileStatus/>
+                <ProfileStatus {...props}/>
 
                 <div>
                     <h3>About me:</h3>
