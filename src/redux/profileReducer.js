@@ -76,7 +76,7 @@ export const getProfileStatus=(userId)=>{
     return (dispatch)=>{
         profileAPI.getProfileStatus(userId)
             .then(response=>{
-                debugger
+
                 if(response.status==200){
                     dispatch(setProfileStatusAC(response.data))
                 }
@@ -91,7 +91,7 @@ export const UpDateProfileStatus=(newStatusText)=>{
     return (dispatch)=>{
         profileAPI.updateProfileStatus(newStatusText)
             .then(response=>{
-                debugger
+
                 if(response.data.resultCode==0){
                     dispatch(UpDateProfileStatusAC(newStatusText))
                     // debugger

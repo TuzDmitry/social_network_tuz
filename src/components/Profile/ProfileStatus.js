@@ -3,16 +3,18 @@ import React from "react";
 class ProfileStatus extends React.Component{
 
     state={
-        // statusValue:this.props.status,
-        statusValue:'',
+        statusValue:this.props.status,
+        //возможность обходиться без didUpdate
+        // statusValue:'',
         editMode: false
     }
 
 
 
     ActivateEditMode=()=>{
-        // this.setState({editMode: true})
-        this.setState({editMode: true, statusValue:this.props.status})
+        this.setState({editMode: true})
+            //возможность обходиться без didUpdate
+        // this.setState({editMode: true, statusValue:this.props.status})
 
     }
     deActivateEditMode=()=>{
@@ -22,16 +24,26 @@ class ProfileStatus extends React.Component{
 
     onChangeTitle=(e)=>{
         let newTitle=e.currentTarget.value
-        debugger
+        // debugger
         this.setState({statusValue:newTitle})
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        ////позволяет выполнить дейсвие при условии сравнения предыдущих и текущих данных
+        debugger
+        //если новые пропсы не равны старым то засетай нам в локалСтатус новый прийденный статус из пропс
+        if (this.props.status!== prevProps.status){
+            this.setState({statusValue:this.props.status})
+        }
+
+        console.log('componentDidUpdate')
     }
 
 
     render() {
-        debugger
+        // debugger
         return (
             <>
-                <div>временное отображения статуса из сервера:/ <span>{this.props.status}</span>/</div>
+                {/*<div>временное отображения статуса из сервера:/ <span>{this.props.status}</span>/</div>*/}
                 {!this.state.editMode&&<div onClick={this.ActivateEditMode}>{this.props.status||'here will be status'}</div>}
                 {this.state.editMode&&
                 <input autoFocus={true} onBlur={this.deActivateEditMode} onChange={this.onChangeTitle} type="text" value={this.state.statusValue}/>}
