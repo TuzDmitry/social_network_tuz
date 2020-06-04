@@ -5,6 +5,7 @@ import navBarReducer from "./navBarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
+import {reducer as formReducer} from "redux-form";
 
 //вызов метода combineReducers()даст нашему стейту наши redusers нам нужно понимать объект это, как бы создали стейт{}
 let reducers = combineReducers({
@@ -12,7 +13,8 @@ let reducers = combineReducers({
     dialogsPage:dialogsReducer,
     usersPage:usersReducer,
     navbarBlock:navBarReducer,
-    auth:authReducer
+    auth:authReducer,
+    form: formReducer
 });
 
 
