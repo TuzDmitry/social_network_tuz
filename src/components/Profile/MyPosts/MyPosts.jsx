@@ -1,6 +1,7 @@
 import React from "react";
 import pb from './MyPosts.module.css';
 import Post from "./Post/Post";
+import NewPost from "./NewPostForm";
 
 
 // const addPostActionCreator=()=>{
@@ -35,14 +36,15 @@ const MyPosts = (props) => {
         <div className={pb.posts_block}>
             <h2>My Posts</h2>
             <div className='new_post'>
-                <label>New Post</label>
-                <textarea
-                    value={props.newPostText}
-                    placeholder={'Пишите свой новый пост здесь'}
-                    onChange={onChangePost}
-                    className={pb.textarea_new_post}>
-                </textarea>
-                <button onClick={onAddPost}>Send</button>
+                <NewPost/>
+                {/*<label>New Post</label>*/}
+                {/*<textarea*/}
+                {/*    value={props.newPostText}*/}
+                {/*    placeholder={'Пишите свой новый пост здесь'}*/}
+                {/*    onChange={onChangePost}*/}
+                {/*    className={pb.textarea_new_post}>*/}
+                {/*</textarea>*/}
+                {/*<button onClick={onAddPost}>Send</button>*/}
             </div>
             <div className='posts'>
                 {postsElements}

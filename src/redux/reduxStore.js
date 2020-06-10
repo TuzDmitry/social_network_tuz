@@ -15,6 +15,7 @@ let reducers = combineReducers({
     navbarBlock:navBarReducer,
     auth:authReducer,
     form: formReducer
+
 });
 
 

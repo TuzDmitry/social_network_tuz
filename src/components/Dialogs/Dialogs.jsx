@@ -3,6 +3,7 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
+import NewMessage from "./Message/NewMessageForm";
 
 
 const Dialogs = (props) => {
@@ -37,15 +38,16 @@ const Dialogs = (props) => {
                         {messagesElements}
                     </div>
                     <div className={s.sendingMessageBlock}>
-                        <div>
-                            <textarea placeholder={'Напишите что-нибудь'}
-                                      onChange={onChangeTextArea}
-                                      value={props.dialogsPage.newMessageText}
-                            ></textarea>
-                        </div>
-                        <div>
-                            <button onClick={addMessage}>Отправить</button>
-                        </div>
+                        <NewMessage/>
+                        {/*<div>*/}
+                        {/*    <textarea placeholder={'Напишите что-нибудь'}*/}
+                        {/*              onChange={onChangeTextArea}*/}
+                        {/*              value={props.dialogsPage.newMessageText}*/}
+                        {/*    ></textarea>*/}
+                        {/*</div>*/}
+                        {/*<div>*/}
+                        {/*    <button onClick={addMessage}>Отправить</button>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
