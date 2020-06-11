@@ -16,14 +16,14 @@ let mapStateToProps = (state) => {////MapStateToProps---ф-я превратит
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        addMessage: () => {
-            let action = addMessageActionCreator()
+        addMessage: (textMessage) => {
+            let action = addMessageActionCreator(textMessage)
             dispatch(action)
         },
-        UpDateMessageArea: (text) => {
-            let action = upDateNewMessageTextActionCreator(text)
-            dispatch(action)
-        }
+        // UpDateMessageArea: (text) => {
+        //     let action = upDateNewMessageTextActionCreator(text)
+        //     dispatch(action)
+        // }
     }
 }
 

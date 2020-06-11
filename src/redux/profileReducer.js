@@ -1,41 +1,36 @@
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPADATE_NEW_POST_TEXT = 'UPADATE-NEW-POST-TEXT';
-const SET_USER_PROFILE='SET_USER_PROFILE'
-const SET_PROFILE_STATUS='SET_PROFILE_STATUS'
-const UPDATE_PROFILE_STATUS='UPDATE_PROFILE_STATUS'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
+const UPDATE_PROFILE_STATUS = 'UPDATE_PROFILE_STATUS'
 
 let initialState = {
-    profile:null,
+    profile: null,
     posts: [
         {id: '1', message: 'This is post1', likesCount: '21'},
         {id: '2', message: 'This is post2', likesCount: '24'},
         {id: '3', message: 'This is post3', likesCount: '4'},
         {id: '4', message: 'This is post4', likesCount: '12'}
     ],
-    newPostText: '',
-    status:''
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            if (state.newPostText !== "") {
-                let newPost = {id: 5, message: state.newPostText, likesCount: 0};
+            if (action.textPost) {
+                let newPost = {
+                    id: Math.floor(Math.random() * 100),
+                    message: action.textPost,
+                    likesCount: 0
+                };
                 return {
                     ...state,
-                    posts: [...state.posts, newPost],
-                    newPostText: ""
+                    posts: [...state.posts, newPost]
                 };
             }
 
-        case UPADATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
-        }
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -54,13 +49,12 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const upDateNewPostTextActionCreator = (text) => ({type: UPADATE_NEW_POST_TEXT, newText: text})
+export const addPostActionCreator = (textPost) => ({type: ADD_POST, textPost})
 
-export const setUserProfile=(profile)=>({type:SET_USER_PROFILE, profile})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
-export const getProfile=(userId)=>{
-    return (dispatch)=>{
+export const getProfile = (userId) => {
+    return (dispatch) => {
         profileAPI.getProfile(userId)
             .then((response) => {
                 // debugger;
@@ -69,15 +63,15 @@ export const getProfile=(userId)=>{
     }
 }
 
-export const setProfileStatusAC=(statusText)=>({type:SET_PROFILE_STATUS, statusText})
+export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
 
 ///THUNKa
-export const getProfileStatus=(userId)=>{
-    return (dispatch)=>{
+export const getProfileStatus = (userId) => {
+    return (dispatch) => {
         profileAPI.getProfileStatus(userId)
-            .then(response=>{
+            .then(response => {
 
-                if(response.status==200){
+                if (response.status == 200) {
                     dispatch(setProfileStatusAC(response.data))
                 }
             })
@@ -85,14 +79,14 @@ export const getProfileStatus=(userId)=>{
     }
 }
 
-export const UpDateProfileStatusAC=(newStatusText)=>({type:UPDATE_PROFILE_STATUS, newStatusText})
+export const UpDateProfileStatusAC = (newStatusText) => ({type: UPDATE_PROFILE_STATUS, newStatusText})
 
-export const UpDateProfileStatus=(newStatusText)=>{
-    return (dispatch)=>{
+export const UpDateProfileStatus = (newStatusText) => {
+    return (dispatch) => {
         profileAPI.updateProfileStatus(newStatusText)
-            .then(response=>{
+            .then(response => {
 
-                if(response.data.resultCode==0){
+                if (response.data.resultCode == 0) {
                     dispatch(UpDateProfileStatusAC(newStatusText))
                     // debugger
                 }

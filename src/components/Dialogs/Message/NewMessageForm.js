@@ -3,7 +3,8 @@ import {Field, reduxForm} from "redux-form";
 
 const NewMessage = (props) => {
     let onSubmit=(formData)=>{
-        console.log(formData)
+        console.log(formData.message)
+        props.addMessage(formData.message)
     }
     return (
         <ReduxNewMessageForm onSubmit={onSubmit}/>
@@ -24,6 +25,6 @@ const NewMessageForm = (props) => {
     )
 }
 
-const ReduxNewMessageForm = reduxForm({form: 'Message'})(NewMessageForm)
+const ReduxNewMessageForm = reduxForm({form: 'message'})(NewMessageForm)
 
 export default NewMessage

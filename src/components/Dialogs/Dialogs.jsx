@@ -14,18 +14,15 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messages.map((text) => <Message key={text.id}
                                                                              message={text.message}/>)
 
-    let addMessage = () => {
-        props.addMessage()
-    }
+    // let addMessage = () => {
+    //     props.addMessage()
+    // }
 
-    let onChangeTextArea = (e) => {
-        let text = e.currentTarget.value;
-        props.UpDateMessageArea(text)
-    }
+    // let onChangeTextArea = (e) => {
+    //     let text = e.currentTarget.value;
+    //     props.UpDateMessageArea(text)
+    // }
 
-// alert(props.isAuth)
-
-    // if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div>
@@ -38,7 +35,7 @@ const Dialogs = (props) => {
                         {messagesElements}
                     </div>
                     <div className={s.sendingMessageBlock}>
-                        <NewMessage/>
+                        <NewMessage addMessage={props.addMessage}/>
                         {/*<div>*/}
                         {/*    <textarea placeholder={'Напишите что-нибудь'}*/}
                         {/*              onChange={onChangeTextArea}*/}

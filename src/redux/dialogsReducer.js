@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPADATE_NEW_MESSAGE_TEXT = 'UPADATE-NEW-MESSAGE-TEXT';
+// const UPADATE_NEW_MESSAGE_TEXT = 'UPADATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     dialogs: [
@@ -22,37 +22,29 @@ const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_MESSAGE:
-            if (state.newMessageText !== "") {
-                let newMessageText=state.newMessageText
+            // debugger
+            if (action.textMessage) {
                 return {
                     ...state,
-                    messages: [...state.messages, {message: newMessageText, id:15}],
-                    newMessageText: ""
+                    messages: [...state.messages, {message: action.textMessage, id:Math.floor(Math.random()*100)}],
                 }
             }
 
-        // case ADD_MESSAGE:
-        //     if (stateCopy.newMessageText !== "") {
-        //         let newMessage = {message: stateCopy.newMessageText};
-        // stateCopy.messages=[...state.messages]
-        //         stateCopy.messages.push(newMessage);
-        //         stateCopy.newMessageText = ""
-        //     }
-        //     return stateCopy;
 
-        case UPADATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText
-            }
+
+        // case UPADATE_NEW_MESSAGE_TEXT:
+        //     return {
+        //         ...state,
+        //         newMessageText: action.newText
+        //     }
         default:
             return state;
     }
 }
 
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const upDateNewMessageTextActionCreator = (text) => ({type: UPADATE_NEW_MESSAGE_TEXT, newText: text})
+export const addMessageActionCreator = (textMessage) => ({type: ADD_MESSAGE, textMessage})
+// export const upDateNewMessageTextActionCreator = (text) => ({type: UPADATE_NEW_MESSAGE_TEXT, newText: text})
 
 
 export default dialogsReducer;

@@ -7,7 +7,6 @@ import {Redirect, withRouter} from "react-router-dom";
 import {withVerificationLogin} from "../../HOC/HOC";
 import {compose} from "redux";
 
-// import {profileAPI} from "../../api/api";
 
 
 class ProfileContainer extends React.Component {
@@ -15,15 +14,6 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId ? this.props.match.params.userId : 7393
-        ///унесли в САНКУ!!!!
-
-        // debugger
-        // profileAPI.getProfile(userId)
-        //     .then((response) => {
-        //         // debugger;
-        //         this.props.setUserProfile(response.data)
-        //     });
-
         this.props.getProfile(userId)
         this.props.getProfileStatus(userId)
     }
@@ -35,7 +25,6 @@ class ProfileContainer extends React.Component {
         return (
 
             <Profile {...this.props}
-                     // profile={this.props.profile}
             />
         )
     }
