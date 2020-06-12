@@ -3,7 +3,7 @@ import h from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
 
-const Header=(props)=> {
+const Header = (props) => {
     // debugger
 
     return (
@@ -11,7 +11,12 @@ const Header=(props)=> {
             <img src="https://i.pinimg.com/originals/8e/8e/5d/8e8e5d3e0b38ecd0688082625bbf1591.png" alt="fdsfd"/>
 
             <div className={h.loginBlock}>
-                {props.loginData.isAuth?props.loginData.login:<NavLink to={'/login'}>Login</NavLink>}
+                {props.loginData.isAuth ?
+                    <div>
+                        {props.loginData.login}
+                        <button onClick={props.logoutThunk}>Выйти</button>
+                    </div>
+                    : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )

@@ -16,8 +16,7 @@ const authReducer = (state = initialState, action) => {
             // debugger
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
             };
 
         default:
@@ -26,17 +25,43 @@ const authReducer = (state = initialState, action) => {
 }
 
 
+export const setUserData = (userId, login, email, isAuth) => ({
+    type: SET_USER_DATA,
+    data: {userId, login, email, isAuth}
+})
 
-export const setUserData = (userId,login,email) => ({type: SET_USER_DATA, data:{userId,login,email}})
-
-export const setUserDataThunk=()=>{
-    return (dispatch)=>{
+export const setUserDataThunk = () => {
+    return (dispatch) => {
         authAPI.getAuth()
             .then((response) => {
-                if(response.data.resultCode===0){
+                if (response.data.resultCode === 0) {
                     // debugger
-                    let {id,login,email}=response.data.data
-                    dispatch(setUserData(id,login,email))
+                    let {id, login, email} = response.data.data
+                    dispatch(setUserData(id, login, email,true))
+                }
+            });
+    }
+}
+
+export const loginThunk = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe)
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    // debugger
+                    dispatch(setUserDataThunk())
+                }
+            });
+    }
+}
+
+export const logoutThunk = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    // debugger
+                    dispatch(setUserData(null, null, null,false))
                 }
             });
     }

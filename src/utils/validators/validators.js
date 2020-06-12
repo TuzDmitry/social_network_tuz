@@ -1,5 +1,5 @@
 export let required=(value)=>{
-    debugger
+    // debugger
     if (value){return undefined}
     else {return "requred text"}
 }
