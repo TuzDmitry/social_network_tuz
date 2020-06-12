@@ -1,17 +1,63 @@
 import React from "react";
 import style from './formsControls.module.css'
 
-const Textarea = ({input, meta, ...props}) => {
-    debugger
+// export const Textarea = ({input, meta, ...props}) => {
+//     const hasError = meta.touched && meta.error
+//     return (
+//         // <div className={`${style.formControl} ${style.error}`}>
+//         <div className={style.formControl + " " + (hasError ? style.error : "")}>
+//             <textarea {...input}{...props} ></textarea>
+//             {hasError && <span>{meta.error}</span>}
+//         </div>
+//
+//     )
+// }
 
+// export const Input = ({input, meta, ...props}) => {
+//     debugger
+//     const hasError = meta.touched && meta.error
+//     return (
+//         <div className={style.formControl + " " + (hasError ? style.error : "")}>
+//             <input {...input}{...props} />
+//             {hasError && <span>{meta.error}</span>}
+//         </div>
+//
+//     )
+// }
+
+const FormControl = ({input, meta, child, ...props}) => {
+    debugger
     const hasError = meta.touched && meta.error
     return (
-        // <div className={`${style.formControl} ${style.error}`}>
-        <div className={style.formControl+" "+( hasError?style.error: "")}>
-            <textarea {...input}{...props} ></textarea>
+        <div className={style.formControl + " " + (hasError ? style.error : "")}>
+            {props.children}
             {hasError && <span>{meta.error}</span>}
         </div>
 
     )
 }
-export default Textarea
+
+export const Textarea = (props) => {
+    const {input, meta, child, ...restProps} = props
+    return (
+        <FormControl {...props}>
+            <textarea {...input}{...restProps} ></textarea>
+        </FormControl>
+
+    )
+}
+
+export const Input = (props) => {
+    debugger
+    const {input, meta, child, ...restProps} = props
+    return (
+        <FormControl {...props}>
+            <input {...input} {...restProps}/>
+        </FormControl>
+
+    )
+}
+
+
+
+

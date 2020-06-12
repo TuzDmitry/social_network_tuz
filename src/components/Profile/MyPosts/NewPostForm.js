@@ -1,7 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
-import Textarea from "../../../common/formsControls/formsControls";
+import {Textarea} from "../../../common/formsControls/formsControls";
 
 const NewPost = (props) => {
     let onSubmit = (formData) => {
