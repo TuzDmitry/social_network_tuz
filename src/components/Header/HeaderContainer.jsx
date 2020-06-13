@@ -19,6 +19,9 @@ class HeaderContainer extends React.Component{
         //
         //
         //     });
+
+
+        debugger
         this.props.setUserDataThunk()
     }
 
