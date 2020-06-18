@@ -14,7 +14,7 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_USER_DATA:
-            debugger
+            // debugger
             return {
                 ...state,
                 ...action.data
@@ -32,9 +32,9 @@ export const setUserData = (userId, login, email, isAuth) => ({
 })
 
 export const setUserDataThunk = () => {
-    debugger
+    // debugger
     return (dispatch) => {
-        authAPI.getAuth()
+        return authAPI.getAuth()
             .then((response) => {
                 if (response.data.resultCode === 0) {
                     debugger

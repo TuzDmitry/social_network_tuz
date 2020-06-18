@@ -10,6 +10,7 @@ import {
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
 import {withVerificationLogin} from "../../HOC/HOC";
+import {compose} from "redux";
 
 
 
@@ -154,7 +155,10 @@ let mapDispatchToProps = (dispatch) => {
 //         toggleIsFetching
 //     }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withVerificationLogin(UsersAPIComponent));
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    // withVerificationLogin
+)(UsersAPIComponent);
 
 // export default connect(mapStateToProps,
 //     {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,toggleIsAwaitingResponse,

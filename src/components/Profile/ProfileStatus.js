@@ -29,7 +29,7 @@ class ProfileStatus extends React.Component{
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         ////позволяет выполнить дейсвие при условии сравнения предыдущих и текущих данных
-        debugger
+        // debugger
         //если новые пропсы не равны старым то засетай нам в локалСтатус новый прийденный статус из пропс
         if (this.props.status!== prevProps.status){
             this.setState({statusValue:this.props.status})

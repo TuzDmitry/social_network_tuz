@@ -3,7 +3,7 @@ import Profile from "./Profile";
 // import * as axios from "axios";
 import {connect} from "react-redux";
 import {getProfile, getProfileStatus, UpDateProfileStatus} from "../../redux/profileReducer";
-import {Redirect, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import {withVerificationLogin} from "../../HOC/HOC";
 import {compose} from "redux";
 
@@ -18,11 +18,13 @@ class ProfileContainer extends React.Component {
         let userId = this.props.match.params.userId
         if(!userId){
             userId=this.props.userId
+            debugger
+            //////и без него работает...
+            if(!userId){
+                this.props.history.push('/login')
+            }
+            //////////
         }
-
-
-
-        // let userId = this.props.match.params.userId ? this.props.match.params.userId : this.props.userId
         this.props.getProfile(userId)
         this.props.getProfileStatus(userId)
     }
@@ -55,5 +57,5 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {getProfile, getProfileStatus, UpDateProfileStatus}),
     withRouter,
-    withVerificationLogin
+    // withVerificationLogin
 )(ProfileContainer)
