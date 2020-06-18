@@ -2,15 +2,21 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {
-    changePageUsersTC,
-    followUserTC, getUsersThunkCreator,
+    followUserTC, requestUsers,
     unfollowUserTC
 } from "../../redux/usersReducer";
 
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-import {withVerificationLogin} from "../../HOC/HOC";
 import {compose} from "redux";
+import {
+    getAwaitingResponse,
+    getCurrentPage,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/usersSelectors";
 
 
 
@@ -18,7 +24,7 @@ class UsersAPIComponent extends React.Component {
     ///метод вызывается только один раз
     componentDidMount() {
         console.log('я вмонтировалась -append(jsx to DOM)')
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
 
 
         // this.props.toggleIsFetching(true)
@@ -39,18 +45,7 @@ class UsersAPIComponent extends React.Component {
 
 
     onPageChanged = (pageNumber) => {
-        // this.props.setCurrentPage(pageNumber)
-        //         // this.props.toggleIsFetching(true)
-        //         //
-        //         // usersAPI.getUsers(pageNumber, this.props.pageSize)
-        //         //     .then((data) => {
-        //         //         // debugger;
-        //         //         this.props.toggleIsFetching(false)
-        //         //         this.props.setUsers(data.items)
-        //         //     })
-        //         // ;
-        this.props.changePageUsers(pageNumber, this.props.pageSize)
-
+        this.props.requestUsers(pageNumber, this.props.pageSize)
     }
 
     onFollowChanged = (userId) => {
@@ -87,15 +82,7 @@ class UsersAPIComponent extends React.Component {
     }
 
     render() {
-
         console.log('я отрендерилась- пришли новые пропсы')
-        // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        //
-        // let pages = [];
-        // for (let i = 1; i <= pagesCount; i++) {
-        //     pages.push(i)
-        // }
-
 
         return (
             <>
@@ -116,26 +103,35 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         ////в функ-ую компоменту теперь придет массив с юзерами через пропсы под названием users
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         awaitingResponse: state.usersPage.awaitingResponse
+//     }
+// }
+
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        ////в функ-ую компоменту теперь придет массив с юзерами через пропсы под названием users
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        awaitingResponse: state.usersPage.awaitingResponse
+        ///получение данных из селекторов
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        awaitingResponse: getAwaitingResponse(state)
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
 
-        getUsers: (currentPage, pageSize) => {
-            dispatch(getUsersThunkCreator(currentPage, pageSize))
-        },
-        changePageUsers: (pageNumber, pageSize) => {
-            dispatch(changePageUsersTC(pageNumber, pageSize))
+        requestUsers: (currentPage, pageSize) => {
+            dispatch(requestUsers(currentPage, pageSize))
         },
         followUser: (userId) => {
             dispatch(followUserTC(userId))
@@ -146,14 +142,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-// let mDTP = {
-//         follow,
-//         unfollow,
-//         setUsers,
-//         setCurrentPage,
-//         setTotalUsersCount,
-//         toggleIsFetching
-//     }
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),

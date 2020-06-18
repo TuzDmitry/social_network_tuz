@@ -96,11 +96,12 @@ export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
 
 ////Thunk
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(page))
         /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
-        usersAPI.getUsers(currentPage, pageSize)
+        usersAPI.getUsers(page, pageSize)
             .then((data) => {
                 // debugger;
                 dispatch(toggleIsFetching(false))
@@ -108,21 +109,6 @@ export const getUsersThunkCreator = (currentPage, pageSize) => {
                 dispatch(setTotalUsersCount(data.totalCount))
 
             });
-    }
-}
-
-
-export const changePageUsersTC = (el, pageSize) => {
-    return (dispatch) => {
-        dispatch(setCurrentPage(el))
-        dispatch(toggleIsFetching(true))
-
-        usersAPI.getUsers(el, pageSize)
-            .then((data) => {
-                dispatch(toggleIsFetching(false))
-                dispatch(setUsers(data.items))
-            })
-        ;
     }
 }
 
