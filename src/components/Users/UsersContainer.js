@@ -113,7 +113,6 @@ class UsersAPIComponent extends React.Component {
 //         awaitingResponse: state.usersPage.awaitingResponse
 //     }
 // }
-
 let mapStateToProps = (state) => {
     return {
         ///получение данных из селекторов

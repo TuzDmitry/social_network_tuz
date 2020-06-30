@@ -1,6 +1,7 @@
 import React from "react";
 import pi from './ProfileInformation.module.css';
-import ProfileStatus from "../ProfileStatus";
+// import ProfileStatus from "../ProfileStatus";
+import ProfileStatus from "../ProfileStatusHOOK";
 
 
 const ProfileInformation=(props)=> {

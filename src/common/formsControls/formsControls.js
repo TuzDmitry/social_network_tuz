@@ -26,7 +26,7 @@ import style from './formsControls.module.css'
 // }
 
 const FormControl = ({input, meta, child, ...props}) => {
-    // debugger
+    debugger
     const hasError = meta.touched && meta.error
     return (
         <div className={style.formControl + " " + (hasError ? style.error : "")}>
@@ -38,7 +38,9 @@ const FormControl = ({input, meta, child, ...props}) => {
 }
 
 export const Textarea = (props) => {
-    const {input, meta, child, ...restProps} = props
+
+    const {input, meta, ...restProps} = props
+
     return (
         <FormControl {...props}>
             <textarea {...input}{...restProps} ></textarea>
