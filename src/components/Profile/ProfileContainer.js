@@ -13,12 +13,12 @@ class ProfileContainer extends React.Component {
 
 
     componentDidMount() {
-        debugger
+        // debugger
 
         let userId = this.props.match.params.userId
         if(!userId){
             userId=this.props.userId
-            debugger
+            // debugger
             //////и без него работает...
             if(!userId){
                 this.props.history.push('/login')

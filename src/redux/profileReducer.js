@@ -65,7 +65,7 @@ export const getProfile = (userId) => {
 
 export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
 
-///THUNKa
+///THUNKи
 export const getProfileStatus = (userId) => {
     return (dispatch) => {
         profileAPI.getProfileStatus(userId)
@@ -88,7 +88,7 @@ export const UpDateProfileStatus = (newStatusText) => {
 
                 if (response.data.resultCode == 0) {
                     dispatch(UpDateProfileStatusAC(newStatusText))
-                    // debugger
+                    debugger
                 }
 
             })

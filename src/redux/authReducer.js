@@ -37,7 +37,7 @@ export const setUserDataThunk = () => {
         return authAPI.getAuth()
             .then((response) => {
                 if (response.data.resultCode === 0) {
-                    debugger
+                    // debugger
                     let {id, login, email} = response.data.data
                     dispatch(setUserData(id, login, email, true))
                 }

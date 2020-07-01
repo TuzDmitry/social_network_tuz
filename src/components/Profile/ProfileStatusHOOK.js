@@ -1,31 +1,38 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const ProfileStatusHook =(props)=>{
-    let [editMode, SetEditMode]=useState(false)
+    let [editMode, setEditMode]=useState(false)
+    let [status, changeStatus]=useState(props.status)
 
-    let ActivateEditMode=()=>{
-        SetEditMode(true)
+    useEffect(()=>{
+        debugger
+        changeStatus(props.status)
+
+    },[props.status])
+
+
+    let activateEditMode=()=>{
+        setEditMode(true)
     }
-    let DeActivateEditMode=()=>{
-        SetEditMode(false)
+    let deActivateEditMode=()=>{
+        setEditMode(false)
+        props.UpDateProfileStatus(status)
     }
 
    let onChangeTitle=(e)=>{
-        // let newTitle=e.currentTarget.value
-        // debugger
+        let newTitle=e.currentTarget.value
+       debugger
+       changeStatus(newTitle)
 
     }
 
-
-        debugger
         return (
             <>
-                {/*<div>временное отображения статуса из сервера:/ <span>{this.props.status}</span>/</div>*/}
-                {!editMode&&<div onClick={ActivateEditMode}>{props.status||'here will be status'}</div>}
+                {!editMode&&<div onClick={activateEditMode}>{status||'here will be status'}</div>}
 
 
                 {editMode&&
-                <input autoFocus={true} onBlur={DeActivateEditMode} onChange={onChangeTitle} type="text" value='инпут'/>}
+                <input autoFocus={true} onBlur={deActivateEditMode} onChange={onChangeTitle} type="text" value={status}/>}
             </>
 
         )

@@ -1,3 +1,6 @@
+
+////////уже не используем
+
 import React from "react";
 
 class ProfileStatus extends React.Component{
