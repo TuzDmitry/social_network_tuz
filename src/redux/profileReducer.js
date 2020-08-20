@@ -32,18 +32,13 @@ const profileReducer = (state = initialState, action) => {
             }
 
         case SET_USER_PROFILE:
-            return {
-                ...state,
-                profile: action.profile
-            };
+            return {...state, profile: action.profile};
 
         case SET_PROFILE_STATUS:
-            // debugger
             return {...state, status: action.statusText}
 
         case UPDATE_PROFILE_STATUS:
             return {...state, status: action.newStatusText}
-
         default:
             return state;
     }
@@ -57,7 +52,6 @@ export const getProfile = (userId) => {
     return (dispatch) => {
         profileAPI.getProfile(userId)
             .then((response) => {
-                // debugger;
                 dispatch(setUserProfile(response.data))
             });
     }
@@ -85,7 +79,6 @@ export const UpDateProfileStatus = (newStatusText) => {
     return (dispatch) => {
         profileAPI.updateProfileStatus(newStatusText)
             .then(response => {
-
                 if (response.data.resultCode == 0) {
                     dispatch(UpDateProfileStatusAC(newStatusText))
                     debugger
@@ -94,6 +87,5 @@ export const UpDateProfileStatus = (newStatusText) => {
             })
     }
 }
-
 
 export default profileReducer;

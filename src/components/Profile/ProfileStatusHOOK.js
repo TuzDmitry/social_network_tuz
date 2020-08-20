@@ -5,7 +5,6 @@ const ProfileStatusHook =(props)=>{
     let [status, changeStatus]=useState(props.status)
 
     useEffect(()=>{
-        debugger
         changeStatus(props.status)
 
     },[props.status])

@@ -49,7 +49,6 @@ export const loginThunk = (email, password, rememberMe) => {
 
     return (dispatch) => {
 
-
         authAPI.login(email, password, rememberMe)
             .then((response) => {
                 if (response.data.resultCode === 0) {
