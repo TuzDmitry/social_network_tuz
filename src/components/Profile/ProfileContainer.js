@@ -3,10 +3,9 @@ import Profile from "./Profile";
 // import * as axios from "axios";
 import {connect} from "react-redux";
 import {getProfile, getProfileStatus, UpDateProfileStatus} from "../../redux/profileReducer";
-import { withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withVerificationLogin} from "../../HOC/HOC";
 import {compose} from "redux";
-
 
 
 class ProfileContainer extends React.Component {
@@ -16,11 +15,11 @@ class ProfileContainer extends React.Component {
         // debugger
 
         let userId = this.props.match.params.userId
-        if(!userId){
-            userId=this.props.userId
+        if (!userId) {
+            userId = this.props.userId
             // debugger
             //////и без него работает...
-            if(!userId){
+            if (!userId) {
                 this.props.history.push('/login')
             }
             //////////
@@ -59,3 +58,4 @@ export default compose(
     withRouter,
     // withVerificationLogin
 )(ProfileContainer)
+

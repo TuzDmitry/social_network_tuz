@@ -1,6 +1,7 @@
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
+const DELETE_POST = 'DELETE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 const UPDATE_PROFILE_STATUS = 'UPDATE_PROFILE_STATUS'
@@ -31,6 +32,9 @@ const profileReducer = (state = initialState, action) => {
                 };
             }
 
+        case DELETE_POST:
+            return {...state, posts:state.posts.filter(el=>el.id!==action.id)}
+
         case SET_USER_PROFILE:
             return {...state, profile: action.profile};
 
@@ -43,10 +47,19 @@ const profileReducer = (state = initialState, action) => {
             return state;
     }
 }
-
+//Action Creators
 export const addPostActionCreator = (textPost) => ({type: ADD_POST, textPost})
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
+
+export const UpDateProfileStatusAC = (newStatusText) => ({type: UPDATE_PROFILE_STATUS, newStatusText})
+
+export const deletePostAC=(id)=>({type:DELETE_POST, id})
+
+
+///THUNKи
 
 export const getProfile = (userId) => {
     return (dispatch) => {
@@ -57,9 +70,6 @@ export const getProfile = (userId) => {
     }
 }
 
-export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
-
-///THUNKи
 export const getProfileStatus = (userId) => {
     return (dispatch) => {
         profileAPI.getProfileStatus(userId)
@@ -73,7 +83,7 @@ export const getProfileStatus = (userId) => {
     }
 }
 
-export const UpDateProfileStatusAC = (newStatusText) => ({type: UPDATE_PROFILE_STATUS, newStatusText})
+
 
 export const UpDateProfileStatus = (newStatusText) => {
     return (dispatch) => {
