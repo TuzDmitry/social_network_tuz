@@ -1,12 +1,13 @@
 import {usersAPI} from "../api/api";
+import {updateObjectInArray} from "../utils/object-helpers";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_IS_AWAITING_RESPONSE = 'TOGGLE_IS_AWAITING_RESPONSE'
+const FOLLOW = 'social_network/usersReducer/FOLLOW';
+const UNFOLLOW = 'social_network/usersReducer/UNFOLLOW';
+const SET_USERS = 'social_network/usersReducer/SET_USERS'
+const SET_CURRENT_PAGE = 'social_network/usersReducer/SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'social_network/usersReducer/SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'social_network/usersReducer/TOGGLE_IS_FETCHING'
+const TOGGLE_IS_AWAITING_RESPONSE = 'social_network/usersReducer/TOGGLE_IS_AWAITING_RESPONSE'
 
 
 let initialState = {
@@ -24,30 +25,30 @@ const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case FOLLOW:
+            case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (action.userId === user.id) {
-                        return {...user, followed: true}
-                    }
-                    return user;
-                })
+                users: updateObjectInArray(state.users,action.userId, 'id', {followed: true})
             }
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (action.userId === user.id) {
-                        return {...user, followed: false}
-                    }
-                    return user;
-                })
+                users: updateObjectInArray(state.users,action.userId, 'id', {followed: false})
             }
 
+        // case UNFOLLOW:
+        //     return {
+        //         ...state,
+        //         users: state.users.map(user => {
+        //             if (action.userId === user.id) {
+        //                 return {...user, followed: false}
+        //             }
+        //             return user;
+        //         })
+        //     }
+
         case SET_USERS:
-            debugger
             return {
                 ...state,
                 users: action.users
@@ -97,48 +98,39 @@ export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
 ////Thunk
 
 export const requestUsers = (page, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true))
         dispatch(setCurrentPage(page))
         /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
-        usersAPI.getUsers(page, pageSize)
-            .then((data) => {
-                // debugger;
-                dispatch(toggleIsFetching(false))
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
-
-            });
+        let data = await usersAPI.getUsers(page, pageSize)
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+        dispatch(toggleIsFetching(false))
     }
 }
 
+
+export const followUnfollow = async (dispatch,userId, AC, apiMethod) => {
+        dispatch(toggleIsAwaitingResponse(userId, true))
+    let data= await apiMethod(userId)
+                if (data.resultCode == 0) {
+                    dispatch(AC(userId))
+                }
+                dispatch(toggleIsAwaitingResponse(userId, false))
+}
 
 export const followUserTC = (userId) => {
     return (dispatch) => {
-        dispatch(toggleIsAwaitingResponse(userId, true))
-
-        usersAPI.followUser(userId)
-            .then((data) => {
-                if (data.resultCode == 0) {
-                    dispatch(follow(userId))
-                }
-                dispatch(toggleIsAwaitingResponse(userId, false))
-            })
+        let apiMethod = usersAPI.followUser.bind(usersAPI)
+        followUnfollow(dispatch,userId, follow, apiMethod)
     }
 }
-
 export const unfollowUserTC = (userId) => {
     return (dispatch) => {
-        dispatch(toggleIsAwaitingResponse(userId, true))
-        usersAPI.unfollowUser(userId)
-            .then((data) => {
-                if (data.resultCode == 0) {
-                    dispatch(unfollow(userId))
-                }
-                dispatch(toggleIsAwaitingResponse(userId, false))
-            })
+        debugger
+        let apiMethod=usersAPI.unfollowUser.bind(usersAPI)
+        followUnfollow(dispatch, userId, unfollow, apiMethod)
     }
 }
-
 
 export default usersReducer;

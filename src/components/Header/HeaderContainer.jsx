@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 // import * as axios from "axios";
 import {connect} from "react-redux";
-import {logoutThunk} from "../../redux/authReducer";
+import {logout} from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component{
 
@@ -26,6 +26,6 @@ const mapStateToProps=(state)=>{
 
 
 // export default connect(mapStateToProps,{setUserDataThunk,logoutThunk})(HeaderContainer);
-export default connect(mapStateToProps,{logoutThunk})(HeaderContainer);
+export default connect(mapStateToProps,{logoutThunk: logout})(HeaderContainer);
 
 

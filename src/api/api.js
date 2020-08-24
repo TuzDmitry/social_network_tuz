@@ -54,7 +54,7 @@ export const usersAPI = {
 }
 
 export const authAPI={
-    getAuth(){
+    checkAuth(){
         return instance.get(`auth/me`)
     },
     login(email, password, rememberMe=false){

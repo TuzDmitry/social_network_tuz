@@ -2,8 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {
-    followUserTC, requestUsers,
-    unfollowUserTC
+    followUserTC, requestUsers, unfollowTC, unfollowUserTC,
 } from "../../redux/usersReducer";
 
 import Users from "./Users";
@@ -134,6 +133,7 @@ let mapDispatchToProps = (dispatch) => {
         followUser: (userId) => {
             dispatch(followUserTC(userId))
         },
+
         unfollowUser: (userId) => {
             dispatch(unfollowUserTC(userId))
         }

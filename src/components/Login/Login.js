@@ -3,7 +3,7 @@ import {Field, reduxForm} from "redux-form";
 import {Input} from "../../common/formsControls/formsControls";
 import {maxLength30, required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {loginThunk} from "../../redux/authReducer";
+import {login} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 import style from './../../common/formsControls/formsControls.module.css'
 
@@ -64,6 +64,6 @@ let mstp = (state) => {
     }
 }
 
-const LoginContainer = connect(mstp, {loginThunk})(Login)
+const LoginContainer = connect(mstp, {loginThunk: login})(Login)
 
 export default LoginContainer;

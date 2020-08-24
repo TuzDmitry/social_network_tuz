@@ -1,6 +1,6 @@
 import {setUserDataThunk} from "./authReducer";
 
-export const SET_INITIALIZED_SUCCESS = "social_network/Reducer/SET_INITIALIZED_SUCCESS"
+export const SET_INITIALIZED_SUCCESS = "social_network/appReducer/SET_INITIALIZED_SUCCESS"
 
 let initialState = {
     initialized: false
@@ -28,12 +28,14 @@ export const setInitializedSuccess = () => ({
 
 ///TC
 export const Initializing = () => {
-    return (dispatch) => {
-        let promise=dispatch(setUserDataThunk())
-        promise.then(()=>{
-            // debugger
-            dispatch(setInitializedSuccess())
-        })
+    return async (dispatch) => {
+        await dispatch(setUserDataThunk())
+        dispatch(setInitializedSuccess())
+
+        // promise.then(()=>{
+        //     // debugger
+        //     dispatch(setInitializedSuccess())
+        // })
     }
 }
 

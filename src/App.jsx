@@ -20,8 +20,6 @@ import Preloader from "./common/Preloader";
 class App extends React.Component {
 
     componentDidMount() {
-        // debugger
-        // this.props.setUserDataThunk()
         this.props.Initializing()
     }
 
@@ -30,12 +28,9 @@ class App extends React.Component {
             return <Preloader/>
         } else {
             return (
-
                 <div className="app-wrapper">
                     <HeaderContainer/>
-                    <Navbar
-                        // state={props.state.navbarBlock}
-                    />
+                    <Navbar/>
                     <div className='app-wrapper-content'>
                         <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                         <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>

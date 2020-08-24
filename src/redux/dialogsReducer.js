@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'social_network/dialogsReducer/ADD-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -24,11 +24,9 @@ const dialogsReducer = (state = initialState, action) => {
             if (action.textMessage) {
                 return {
                     ...state,
-                    messages: [...state.messages, {message: action.textMessage, id:Math.floor(Math.random()*100)}],
+                    messages: [...state.messages, {message: action.textMessage, id: Math.floor(Math.random() * 100)}],
                 }
             }
-
-
 
 
         default:
