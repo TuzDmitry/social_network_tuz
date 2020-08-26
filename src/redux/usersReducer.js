@@ -119,13 +119,13 @@ export const followUnfollow = async (dispatch,userId, AC, apiMethod) => {
                 dispatch(toggleIsAwaitingResponse(userId, false))
 }
 
-export const followUserTC = (userId) => {
+export const followUser = (userId) => {
     return (dispatch) => {
         let apiMethod = usersAPI.followUser.bind(usersAPI)
         followUnfollow(dispatch,userId, follow, apiMethod)
     }
 }
-export const unfollowUserTC = (userId) => {
+export const unfollowUser = (userId) => {
     return (dispatch) => {
         debugger
         let apiMethod=usersAPI.unfollowUser.bind(usersAPI)
