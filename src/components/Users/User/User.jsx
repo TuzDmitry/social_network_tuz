@@ -4,7 +4,6 @@ import ava from "../../../assets/images/universalAvatar.jpg"
 import {NavLink} from "react-router-dom";
 
 let User = ({user, awaitingResponse, follow, unfollow}) => {
-    debugger
     return (
         <div className={style.user}>
             <div className={style.avaAndFollow}>

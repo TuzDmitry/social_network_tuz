@@ -6,7 +6,7 @@ import React from "react";
 class ProfileStatus extends React.Component{
 
     state={
-        statusValue:this.props.status,
+        status:this.props.status,
         //возможность обходиться без didUpdate
         // statusValue:'',
         editMode: false
@@ -22,20 +22,20 @@ class ProfileStatus extends React.Component{
     }
     deActivateEditMode=()=>{
         this.setState({editMode: false})
-        this.props.UpDateProfileStatus(this.state.statusValue)
+        this.props.UpDateProfileStatus(this.state.status)
     }
 
     onChangeTitle=(e)=>{
         let newTitle=e.currentTarget.value
         // debugger
-        this.setState({statusValue:newTitle})
+        this.setState({status:newTitle})
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         ////позволяет выполнить дейсвие при условии сравнения предыдущих и текущих данных
         // debugger
         //если новые пропсы не равны старым то засетай нам в локалСтатус новый прийденный статус из пропс
         if (this.props.status!== prevProps.status){
-            this.setState({statusValue:this.props.status})
+            this.setState({status:this.props.status})
         }
 
         console.log('componentDidUpdate')
@@ -49,7 +49,7 @@ class ProfileStatus extends React.Component{
                 {/*<div>временное отображения статуса из сервера:/ <span>{this.props.status}</span>/</div>*/}
                 {!this.state.editMode&&<div onClick={this.ActivateEditMode}>{this.props.status||'here will be status'}</div>}
                 {this.state.editMode&&
-                <input autoFocus={true} onBlur={this.deActivateEditMode} onChange={this.onChangeTitle} type="text" value={this.state.statusValue}/>}
+                <input autoFocus={true} onBlur={this.deActivateEditMode} onChange={this.onChangeTitle} type="text" value={this.state.status}/>}
             </>
 
         )

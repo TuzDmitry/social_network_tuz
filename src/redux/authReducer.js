@@ -34,7 +34,6 @@ export const setUserDataThunk = () => {
     return async (dispatch) => {
         let response = await authAPI.checkAuth()
         if (response.data.resultCode === 0) {
-            debugger
             let {id, login, email} = response.data.data
             dispatch(setUserData(id, login, email, true))
         }

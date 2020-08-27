@@ -5,6 +5,7 @@ const FOLLOW = 'social_network/usersReducer/FOLLOW';
 const UNFOLLOW = 'social_network/usersReducer/UNFOLLOW';
 const SET_USERS = 'social_network/usersReducer/SET_USERS'
 const SET_CURRENT_PAGE = 'social_network/usersReducer/SET_CURRENT_PAGE'
+const SET_PAGE_SIZE = 'social_network/usersReducer/SET_PAGE_SIZE'
 const SET_TOTAL_USERS_COUNT = 'social_network/usersReducer/SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'social_network/usersReducer/TOGGLE_IS_FETCHING'
 const TOGGLE_IS_AWAITING_RESPONSE = 'social_network/usersReducer/TOGGLE_IS_AWAITING_RESPONSE'
@@ -25,16 +26,16 @@ const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-            case FOLLOW:
+        case FOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users,action.userId, 'id', {followed: true})
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})
             }
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users,action.userId, 'id', {followed: false})
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})
             }
 
         // case UNFOLLOW:
@@ -64,6 +65,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 currentPage: action.currentpage
             }
+        case SET_PAGE_SIZE:
+            return {
+                ...state,
+                pageSize: action.pageSize
+            }
 
         case TOGGLE_IS_FETCHING:
             return {
@@ -87,6 +93,7 @@ export const follow = (userId) => ({type: FOLLOW, userId})
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentpage) => ({type: SET_CURRENT_PAGE, currentpage})
+export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize})
 export const setTotalUsersCount = (totalcount) => ({type: SET_TOTAL_USERS_COUNT, totalcount})
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
@@ -97,10 +104,11 @@ export const toggleIsAwaitingResponse = (userId, awaitingResponse) => ({
 
 ////Thunk
 
-export const requestUsers = (page, pageSize) => {
-    return async (dispatch) => {
+export const baseRequestUsers = () => {
+    return async (dispatch, getState) => {
         dispatch(toggleIsFetching(true))
-        dispatch(setCurrentPage(page))
+        let page = getState().usersPage.currentPage
+        let pageSize = getState().usersPage.pageSize
         /////вынесли запрос в отдельную фунцию, и теперь обращаемся к ней , передав в параметры нужные данные из пропс
         let data = await usersAPI.getUsers(page, pageSize)
         dispatch(setUsers(data.items))
@@ -108,27 +116,38 @@ export const requestUsers = (page, pageSize) => {
         dispatch(toggleIsFetching(false))
     }
 }
+export const getUsersByChangedPage = (page) => {
+    return async (dispatch) => {
+        dispatch(setCurrentPage(page))
+        dispatch(baseRequestUsers())
+    }
+}
+export const getUsersByChangedPageSize = (pageSize) => {
+    return async (dispatch) => {
+        dispatch(setPageSize(pageSize))
+        dispatch(baseRequestUsers())
+    }
+}
 
 
-export const followUnfollow = async (dispatch,userId, AC, apiMethod) => {
-        dispatch(toggleIsAwaitingResponse(userId, true))
-    let data= await apiMethod(userId)
-                if (data.resultCode == 0) {
-                    dispatch(AC(userId))
-                }
-                dispatch(toggleIsAwaitingResponse(userId, false))
+export const followUnfollow = async (dispatch, userId, AC, apiMethod) => {
+    dispatch(toggleIsAwaitingResponse(userId, true))
+    let data = await apiMethod(userId)
+    if (data.resultCode == 0) {
+        dispatch(AC(userId))
+    }
+    dispatch(toggleIsAwaitingResponse(userId, false))
 }
 
 export const followUser = (userId) => {
     return (dispatch) => {
         let apiMethod = usersAPI.followUser.bind(usersAPI)
-        followUnfollow(dispatch,userId, follow, apiMethod)
+        followUnfollow(dispatch, userId, follow, apiMethod)
     }
 }
 export const unfollowUser = (userId) => {
     return (dispatch) => {
-        debugger
-        let apiMethod=usersAPI.unfollowUser.bind(usersAPI)
+        let apiMethod = usersAPI.unfollowUser.bind(usersAPI)
         followUnfollow(dispatch, userId, unfollow, apiMethod)
     }
 }

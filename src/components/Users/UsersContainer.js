@@ -2,7 +2,10 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {
-    followUser, requestUsers, unfollowUser
+    baseRequestUsers,
+    followUser, getUsersByChangedPage, getUsersByChangedPageSize,
+    // requestUsers,
+    unfollowUser
 } from "../../redux/usersReducer";
 
 import Users from "./Users";
@@ -20,8 +23,9 @@ import {
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
         const {currentPage, pageSize} = this.props
-        this.props.requestUsers(currentPage, pageSize)
-        console.log('я вмонтировалась -append(jsx to DOM)')
+        // this.props.requestUsers(currentPage, pageSize)
+        this.props.baseRequestUsers()
+        // console.log('я вмонтировалась -append(jsx to DOM)')
     }
 
     componentWillUnmount() {
@@ -29,14 +33,21 @@ class UsersAPIComponent extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
-        const {pageSize, requestUsers} = this.props
-        requestUsers(pageNumber, pageSize)
+        // const {pageSize, requestUsers} = this.props
+        // requestUsers(pageNumber, pageSize)
+        debugger
+        this.props.getUsersByChangedPage(pageNumber)
+    }
+    onPageSizeChanged = (pageSize) => {
+        // const {pageSize, requestUsers} = this.props
+        // requestUsers(pageNumber, pageSize)
+        this.props.getUsersByChangedPageSize(pageSize)
     }
 
 
 
     render() {
-        console.log('я отрендерилась- пришли новые пропсы')
+        // console.log('я отрендерилась- пришли новые пропсы')
 
         return (
             <>
@@ -44,6 +55,7 @@ class UsersAPIComponent extends React.Component {
                 <Users totalUsersCount={this.props.totalUsersCount}
                        pageSize={this.props.pageSize}
                        onPageChanged={this.onPageChanged}
+                       onPageSizeChanged={this.onPageSizeChanged}
                        currentPage={this.props.currentPage}
                        users={this.props.users}
                        awaitingResponse={this.props.awaitingResponse}
@@ -69,5 +81,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {followUser, unfollowUser, requestUsers}),
+    connect(mapStateToProps, {followUser, unfollowUser, /*requestUsers,*/ baseRequestUsers, getUsersByChangedPage,getUsersByChangedPageSize}),
 )(UsersAPIComponent);
