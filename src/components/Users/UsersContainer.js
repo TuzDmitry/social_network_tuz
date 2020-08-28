@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {
     baseRequestUsers,
     followUser, getUsersByChangedPage, getUsersByChangedPageSize,
-    // requestUsers,
     unfollowUser
 } from "../../redux/usersReducer";
 
@@ -22,8 +21,6 @@ import {
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
-        const {currentPage, pageSize} = this.props
-        // this.props.requestUsers(currentPage, pageSize)
         this.props.baseRequestUsers()
         // console.log('я вмонтировалась -append(jsx to DOM)')
     }
@@ -33,14 +30,9 @@ class UsersAPIComponent extends React.Component {
     }
 
     onPageChanged = (pageNumber) => {
-        // const {pageSize, requestUsers} = this.props
-        // requestUsers(pageNumber, pageSize)
-        debugger
         this.props.getUsersByChangedPage(pageNumber)
     }
     onPageSizeChanged = (pageSize) => {
-        // const {pageSize, requestUsers} = this.props
-        // requestUsers(pageNumber, pageSize)
         this.props.getUsersByChangedPageSize(pageSize)
     }
 
@@ -81,5 +73,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {followUser, unfollowUser, /*requestUsers,*/ baseRequestUsers, getUsersByChangedPage,getUsersByChangedPageSize}),
+    connect(mapStateToProps, {followUser, unfollowUser, baseRequestUsers, getUsersByChangedPage,getUsersByChangedPageSize}),
 )(UsersAPIComponent);
