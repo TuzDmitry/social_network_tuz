@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/social_network_tuz/static/css/main.77daf263.chunk.css",
+    "main.js": "/social_network_tuz/static/js/main.43e21920.chunk.js",
+    "main.js.map": "/social_network_tuz/static/js/main.43e21920.chunk.js.map",
+    "runtime-main.js": "/social_network_tuz/static/js/runtime-main.de61c3bc.js",
+    "runtime-main.js.map": "/social_network_tuz/static/js/runtime-main.de61c3bc.js.map",
+    "static/js/2.9f4e18aa.chunk.js": "/social_network_tuz/static/js/2.9f4e18aa.chunk.js",
+    "static/js/2.9f4e18aa.chunk.js.map": "/social_network_tuz/static/js/2.9f4e18aa.chunk.js.map",
+    "static/css/3.153daf9c.chunk.css": "/social_network_tuz/static/css/3.153daf9c.chunk.css",
+    "static/js/3.fea80252.chunk.js": "/social_network_tuz/static/js/3.fea80252.chunk.js",
+    "static/js/3.fea80252.chunk.js.map": "/social_network_tuz/static/js/3.fea80252.chunk.js.map",
+    "index.html": "/social_network_tuz/index.html",
+    "precache-manifest.21e2c8284f2cc9b88ad79f4e8c14aae9.js": "/social_network_tuz/precache-manifest.21e2c8284f2cc9b88ad79f4e8c14aae9.js",
+    "service-worker.js": "/social_network_tuz/service-worker.js",
+    "static/css/3.153daf9c.chunk.css.map": "/social_network_tuz/static/css/3.153daf9c.chunk.css.map",
+    "static/css/main.77daf263.chunk.css.map": "/social_network_tuz/static/css/main.77daf263.chunk.css.map",
+    "static/js/2.9f4e18aa.chunk.js.LICENSE.txt": "/social_network_tuz/static/js/2.9f4e18aa.chunk.js.LICENSE.txt",
+    "static/media/universalAvatar.jpg": "/social_network_tuz/static/media/universalAvatar.c02659f2.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.de61c3bc.js",
+    "static/js/2.9f4e18aa.chunk.js",
+    "static/css/main.77daf263.chunk.css",
+    "static/js/main.43e21920.chunk.js"
+  ]
+}
