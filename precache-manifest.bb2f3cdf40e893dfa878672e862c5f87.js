@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9b5b58c8e3acf3c9165471fe48ad0e87",
+    "revision": "2912e325c62ceca11da9db55b9524801",
     "url": "/social_network_tuz/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social_network_tuz/static/css/3.153daf9c.chunk.css"
   },
   {
-    "revision": "4bd7667fda7379c9939e",
+    "revision": "3755e3c20fc8fec72a2e",
     "url": "/social_network_tuz/static/css/main.77daf263.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/social_network_tuz/static/js/3.04da2a96.chunk.js"
   },
   {
-    "revision": "4bd7667fda7379c9939e",
-    "url": "/social_network_tuz/static/js/main.c1300a98.chunk.js"
+    "revision": "3755e3c20fc8fec72a2e",
+    "url": "/social_network_tuz/static/js/main.88f22f32.chunk.js"
   },
   {
     "revision": "ccdc691a344ffaea6482",

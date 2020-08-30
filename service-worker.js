@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/social_network_tuz/precache-manifest.8be2a6d8db0048ba5decbb3e8b023475.js"
+  "/social_network_tuz/precache-manifest.bb2f3cdf40e893dfa878672e862c5f87.js"
 );
 
 self.addEventListener('message', (event) => {
