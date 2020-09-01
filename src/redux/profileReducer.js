@@ -5,6 +5,7 @@ const DELETE_POST = 'social_network/profileReducer/DELETE_POST';
 const SET_USER_PROFILE = 'social_network/profileReducer/SET_USER_PROFILE'
 const SET_PROFILE_STATUS = 'social_network/profileReducer/SET_PROFILE_STATUS'
 const UPDATE_PROFILE_STATUS = 'social_network/profileReducer/UPDATE_PROFILE_STATUS'
+const SET_PROFILE_PHOTO = 'social_network/profileReducer/SET_PROFILE_PHOTO'
 
 let initialState = {
     profile: null,
@@ -43,6 +44,8 @@ const profileReducer = (state = initialState, action) => {
 
         case UPDATE_PROFILE_STATUS:
             return {...state, status: action.newStatusText}
+        case SET_PROFILE_PHOTO:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -51,6 +54,8 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (textPost) => ({type: ADD_POST, textPost})
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setProfilePhotoSuccess = (photos) => ({type: SET_PROFILE_PHOTO, photos})
+
 
 export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, statusText})
 
@@ -83,7 +88,14 @@ export const UpDateProfileStatus = (newStatusText) => {
         let response = await profileAPI.updateProfileStatus(newStatusText)
         if (response.data.resultCode == 0) {
             dispatch(UpDateProfileStatusAC(newStatusText))
-            debugger
+        }
+    }
+}
+export const sendPhoto = (file) => {
+    return async (dispatch) => {
+        let response = await profileAPI.uploadProfilePhoto(file)
+        if (response.data.resultCode == 0) {
+            dispatch(setProfilePhotoSuccess(response.data.photos))
         }
     }
 }

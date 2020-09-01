@@ -1,11 +1,20 @@
 import React from "react";
 import pi from './ProfileInformation.module.css';
 import ProfileStatus from "../ProfileStatusHOOK";
+import plugAva from '../../../assets/images/templateAvatar.png'
 
-const ProfileInformation = ({profile: {photos, fullName, aboutMe, contacts, lookingForAJob}, status, UpDateProfileStatus}) => {
+const ProfileInformation = ({profile: {photos, fullName, aboutMe, contacts, lookingForAJob}, status, UpDateProfileStatus, isOwner, sendPhoto}) => {
+
+    let onMainPhotoSelected = (e) => {
+        console.log(e.target.files[0])
+        sendPhoto(e.target.files[0])
+    }
+
     return (
         <div className={pi.profAva}>
-            <img src={photos.large} alt="NO_photo"/>
+            <div><img src={photos.large || plugAva} className={pi.mainPhoto} alt="NO_photo"/>
+                <div>{isOwner && <input type="file" onChange={onMainPhotoSelected}/>}</div>
+            </div>
             <div className={pi.person_information}>
                 <h2>{fullName} <br/></h2>
                 <ProfileStatus status={status} UpDateProfileStatus={UpDateProfileStatus}/>

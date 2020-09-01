@@ -16,7 +16,9 @@ else { return (
         <div className={p.flexContainer}>
             <ProfilePicture/>
             <ProfileInformation status={props.status}
+                                isOwner={props.isOwner}
                                 UpDateProfileStatus={props.UpDateProfileStatus}
+                                sendPhoto={props.sendPhoto}
                                 profile={props.profile}/>
             <MyPostsContainer
             />
