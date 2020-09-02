@@ -8,23 +8,28 @@ import Preloader from "../../common/Preloader";
 
 const Profile = (props) => {
 
-if (!props.profile){
-    return <Preloader/>
-}
-else { return (
-    <div>
-        <div className={p.flexContainer}>
-            <ProfilePicture/>
-            <ProfileInformation status={props.status}
-                                isOwner={props.isOwner}
-                                UpDateProfileStatus={props.UpDateProfileStatus}
-                                sendPhoto={props.sendPhoto}
-                                profile={props.profile}/>
-            <MyPostsContainer
-            />
-        </div>
-    </div>
-)}
+    if (!props.profile) {
+        return <Preloader/>
+    } else {
+        return (
+            <div>
+                <div className={p.flexContainer}>
+                    <ProfilePicture/>
+                    <ProfileInformation status={props.status}
+                                        isOwner={props.isOwner}
+                                        UpDateProfileStatus={props.UpDateProfileStatus}
+                                        sendPhoto={props.sendPhoto}
+                                        profile={props.profile}
+                                        saveProfile={props.saveProfile}
+                                        chanheProfileEditMode={props.chanheProfileEditMode}
+                                        editMode={props.editMode}/>
+
+                    <MyPostsContainer
+                    />
+                </div>
+            </div>
+        )
+    }
 
 };
 

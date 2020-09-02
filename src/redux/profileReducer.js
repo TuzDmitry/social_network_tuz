@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'social_network/profileReducer/ADD-POST';
 const DELETE_POST = 'social_network/profileReducer/DELETE_POST';
@@ -6,6 +7,7 @@ const SET_USER_PROFILE = 'social_network/profileReducer/SET_USER_PROFILE'
 const SET_PROFILE_STATUS = 'social_network/profileReducer/SET_PROFILE_STATUS'
 const UPDATE_PROFILE_STATUS = 'social_network/profileReducer/UPDATE_PROFILE_STATUS'
 const SET_PROFILE_PHOTO = 'social_network/profileReducer/SET_PROFILE_PHOTO'
+const CHANGE_PROFILE_EDIT_MODE = 'social_network/profileReducer/CHANGE_PROFILE_EDIT_MODE'
 
 let initialState = {
     profile: null,
@@ -15,7 +17,8 @@ let initialState = {
         {id: '3', message: 'This is post3', likesCount: '4'},
         {id: '4', message: 'This is post4', likesCount: '12'}
     ],
-    status: ''
+    status: '',
+    editMode: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -38,6 +41,8 @@ const profileReducer = (state = initialState, action) => {
 
         case SET_USER_PROFILE:
             return {...state, profile: action.profile};
+        case CHANGE_PROFILE_EDIT_MODE:
+            return {...state, editMode: action.editMode};
 
         case SET_PROFILE_STATUS:
             return {...state, status: action.statusText}
@@ -62,6 +67,10 @@ export const setProfileStatusAC = (statusText) => ({type: SET_PROFILE_STATUS, st
 export const UpDateProfileStatusAC = (newStatusText) => ({type: UPDATE_PROFILE_STATUS, newStatusText})
 
 export const deletePostAC = (id) => ({type: DELETE_POST, id})
+export const chanheProfileEditMode = (editMode) => {
+    debugger
+    return({type: CHANGE_PROFILE_EDIT_MODE, editMode})
+}
 
 
 ///THUNKи
@@ -96,6 +105,21 @@ export const sendPhoto = (file) => {
         let response = await profileAPI.uploadProfilePhoto(file)
         if (response.data.resultCode == 0) {
             dispatch(setProfilePhotoSuccess(response.data.photos))
+        }
+    }
+}
+export const saveProfile = ({photos, ...formData}) => {
+    return async (dispatch, getState) => {
+
+        const userId = getState().profilePage.profile.userId
+        debugger
+        let response = await profileAPI.updateProfileData({userId, ...formData})
+        debugger
+        if (response.data.resultCode == 0) {
+            dispatch(chanheProfileEditMode(false))
+            dispatch(getProfile(userId))
+        }else {
+            dispatch(stopSubmit('profile', {_error: response.data.messages[0]}));
         }
     }
 }

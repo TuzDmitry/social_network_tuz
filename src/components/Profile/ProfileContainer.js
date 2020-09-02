@@ -2,7 +2,14 @@ import React from "react";
 import Profile from "./Profile";
 // import * as axios from "axios";
 import {connect} from "react-redux";
-import {getProfile, getProfileStatus, sendPhoto, UpDateProfileStatus} from "../../redux/profileReducer";
+import {
+    chanheProfileEditMode,
+    getProfile,
+    getProfileStatus,
+    saveProfile,
+    sendPhoto,
+    UpDateProfileStatus
+} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {withVerificationLogin} from "../../HOC/HOC";
 import {compose} from "redux";
@@ -40,12 +47,14 @@ class ProfileContainer extends React.Component {
         // debugger
 
         let isOwner=!!this.props.match.params.userId&&(this.props.match.params.userId!=this.props.userId)
-debugger
         return (
 
             <Profile {...this.props}
                     // если пришел ид с урла
                      isOwner={!isOwner}
+                     editMode={this.props.editMode}
+                     chanheProfileEditMode={this.props.chanheProfileEditMode}
+                     saveProfile={this.props.saveProfile}
             />
         )
     }
@@ -53,6 +62,7 @@ debugger
 
 let mapStateToProps = (state) => {
     return {
+        editMode:state.profilePage.editMode,
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         userId: state.auth.userId
@@ -65,7 +75,7 @@ let mapStateToProps = (state) => {
 // export default connect(mapStateToProps, {getProfile})(withUrlDataContainerComponent)
 
 export default compose(
-    connect(mapStateToProps, {getProfile, getProfileStatus, UpDateProfileStatus,sendPhoto}),
+    connect(mapStateToProps, {getProfile, getProfileStatus, UpDateProfileStatus,sendPhoto, saveProfile, chanheProfileEditMode}),
     withRouter,
     // withVerificationLogin
 )(ProfileContainer)

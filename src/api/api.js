@@ -83,6 +83,13 @@ export const profileAPI = {
                 headers: {'Content-Type': 'multipart/form-data'}
             }
         ).then((res) => res.data)
+    },
+
+    updateProfileData(formData) {
+        debugger
+        return instance.put(`profile`,
+            formData
+        )
     }
 }
 
