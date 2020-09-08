@@ -11,14 +11,14 @@ const Login = (props) => {
 
     let onSubmit = (formData) => {
         console.log(formData)
-        props.loginThunk(formData.email, formData.password, formData.rememberMe)
+        props.loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
 
     if (props.isAuth) return <Redirect to={"/profile"}/>
     return (
-        // <LoginForm/>
-        <ReduxLoginForm onSubmit={onSubmit}/>
+        <>
+            <ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/></>
     )
 }
 
@@ -28,11 +28,14 @@ const LoginForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
-            {createField('Email','email',Input,[required, maxLength30])}
-            {createField('Password','password',Input,[required, maxLength30])}
-            {createField(null,'rememberMe',Input,null,{type:"checkbox"},'remember me')}
+            {props.captchaUrl && <img src={props.captchaUrl} alt=""/>}
+            {props.captchaUrl && createField('symbols from image', 'captcha', Input, [required])}
 
-            {props.error&&<div className={style.errorSummary}>
+            {createField('Email', 'email', Input, [required, maxLength30])}
+            {createField('Password', 'password', Input, [required, maxLength30])}
+            {createField(null, 'rememberMe', Input, null, {type: "checkbox"}, 'remember me')}
+
+            {props.error && <div className={style.errorSummary}>
                 {props.error}
             </div>}
             <button>Login</button>
@@ -47,7 +50,8 @@ const ReduxLoginForm = reduxForm({
 
 let mstp = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

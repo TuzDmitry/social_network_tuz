@@ -1,10 +1,22 @@
 
 .profAva {
-    display: flex;
-    margin-top: 10px;
+    display: grid;
     background-color: #aed3ff;
+    grid-template-areas:
+            "a c"
+            "b c"
+            ". c";
+    grid-gap: 10px;
 }
 
+.photo_block{
+    grid-area: a;
+
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
 
 .profAva img{
     width: 150px;
@@ -12,5 +24,11 @@
 }
 
 .person_information{
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+
+    grid-area: c;
     padding-left: 25px;
 }

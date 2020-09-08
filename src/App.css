@@ -1,11 +1,14 @@
 .app-wrapper {
+
     width: 900px;
     margin: 0 auto;
     display: grid;
-    grid-template-areas: "h h" "n c";
-    grid-template-rows: 60px 1fr;
+    padding-top: 70px;
+    grid-template-areas: "n c r" "h h r";
+    grid-template-rows: 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
+    background-color: #dae2ea;;
 }
 
 h2 {
@@ -17,6 +20,13 @@ h2 {
 .app-wrapper-content {
     background: cornflowerblue;
     grid-area: c;
+}
+
+.block-wrapper-container{
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 

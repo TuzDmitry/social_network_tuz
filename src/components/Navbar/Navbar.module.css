@@ -1,7 +1,11 @@
 .nav{
-    background: aqua;
+    /*background: aqua;*/
     grid-area: n;
     padding: 20px;
+    min-height: 70vh;
+}
+.navbar_container{
+    position: fixed;
 }
 .item a{
     text-decoration: none;

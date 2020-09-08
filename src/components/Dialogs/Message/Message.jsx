@@ -8,7 +8,12 @@ const Message = (props) => {
             <img className={s.ico}
                  src="http://img0.safereactor.cc/pics/post/full/Конор-Макгрегор-США-страны-полиция-5069300.jpeg"
                  alt=""/>
-            {props.message}
+            <div className={s.message_block}>
+                <div className={s.header}>
+                    <div>Dima</div><div>10:10</div>
+                </div>
+                <div className={s.text}>{props.message}</div>
+            </div>
         </div>
     )
 }

@@ -1,11 +1,38 @@
+.h_wrapper{
+    position: fixed;
+    width: 100%;
+
+}
+
+.container{
+
+}
+
 .header {
-    background: chartreuse;
-    grid-area: h;
+    box-shadow: 0px 5px 8px rgba(0,0,0,0.5);
+    background: #7996b2;
     display: flex;
     justify-content: space-between;
+    height: 60px;
+    width: 900px;
+    margin: 0 auto;
 }
-.header img {width: 50px;}
+/*.header img {width: 50px;}*/
 
 .loginBlock a{
-color: white;
+    display: inherit;
+    align-items:inherit;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+.loginBlock a:hover{
+    background-color: #f4dff866;}
+
+.loginBlock{
+      display: flex;
+      align-items: center;
+  }
+.loginBlock img{
+   border-radius: 50%;
 }

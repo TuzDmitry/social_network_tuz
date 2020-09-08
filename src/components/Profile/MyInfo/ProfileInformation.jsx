@@ -19,7 +19,7 @@ let {photo,...restData}=profile
 
     return (
         <div className={pi.profAva}>
-            <div><img src={profile.photos.large || plugAva} className={pi.mainPhoto} alt="NO_photo"/>
+            <div className={pi.photo_block}><img src={profile.photos.large || plugAva} className={pi.mainPhoto} alt="NO_photo"/>
                 <div>{isOwner && <input type="file" onChange={onMainPhotoSelected}/>}</div>
             </div>
             <ProfileStatus status={status} UpDateProfileStatus={UpDateProfileStatus}/>
@@ -38,7 +38,7 @@ let {photo,...restData}=profile
 const ProfileData = (props) => {
     let {fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription} = props.profile
     return (
-        <div className={pi.person_information}>
+        <div className={pi.person_information }>
             {props.isOwner && <button onClick={() => props.chanheProfileEditMode(true)}>Edit</button>}
             <h2>{fullName} <br/></h2>
             <div>

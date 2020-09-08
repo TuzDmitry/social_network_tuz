@@ -14,18 +14,15 @@ const Dialogs = (props) => {
                                                                              message={text.message}/>)
 
     return (
-        <div>
+        <div className={'block-wrapper-container'}>
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
                     {dialogsElements}
                 </div>
-                <div>
-                    <div className={s.messages}>
-                        {messagesElements}
-                    </div>
+                <div className={s.block_conversation}>
+                    <div className={s.messages}>{messagesElements}</div>
                     <div className={s.sendingMessageBlock}>
                         <NewMessage addMessage={props.addMessage}/>
-
                     </div>
                 </div>
             </div>

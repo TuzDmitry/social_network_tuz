@@ -14,7 +14,7 @@ const Profile = (props) => {
         return (
             <div>
                 <div className={p.flexContainer}>
-                    <ProfilePicture/>
+                    {/*<ProfilePicture/>*/}
                     <ProfileInformation status={props.status}
                                         isOwner={props.isOwner}
                                         UpDateProfileStatus={props.UpDateProfileStatus}

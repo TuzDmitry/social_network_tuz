@@ -1,33 +1,48 @@
 
 .dialogs {
+    border-top: 1px solid #00000047;
+    border-bottom: 1px solid #00000047;
     display: grid;
-    grid-template-columns: 2fr 10fr;
-    grid-template-rows: auto 2fr;
+    grid-template-columns: 3fr 10fr;
+    height: 55vh;
+    grid-row-gap: 5px;
+}
+.dialogsItems{
+    border-right: 2px solid;
 }
 
 .sendingMessageBlock{
-    background: rgba(161, 106, 183, 0.63);
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.5);
 }
 
 .messages{
+    flex-grow: 1;
     padding: 10px;
-    background: rgba(183, 241, 255, 0.6);
+    background: rgba(235, 230, 207, 0.6);
     display: flex;
     flex-direction: column;
 }
 
-.messages div{
+.block_conversation {
     display: flex;
-    background: rgba(255, 130, 79, 0.48);
-    padding: 10px;
-    border-radius:15px;
+    flex-direction: column;
 }
 
-.messages div:nth-child(2n){
-    align-self: flex-start;
-}
+/*.messages div{*/
+/*    display: flex;*/
+/*    background: rgba(255, 130, 79, 0.48);*/
+/*    padding: 10px;*/
+/*    border-radius:15px;*/
+/*}*/
 
-.messages div:nth-child(2n+1){
-    align-self: flex-end;
-    flex-direction: row-reverse;
-}
+
+
+
+/*.messages div:nth-child(2n){*/
+/*    align-self: flex-start;*/
+/*}*/
+
+/*.messages div:nth-child(2n+1){*/
+/*    align-self: flex-end;*/
+/*    flex-direction: row-reverse;*/
+/*}*/

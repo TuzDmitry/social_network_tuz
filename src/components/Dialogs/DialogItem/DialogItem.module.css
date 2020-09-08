@@ -1,7 +1,6 @@
 
 .dialogsItems {
     padding: 10px;
-    /*margin-bottom: 10px;*/
 }
 
 .dialogsItems .active {
@@ -10,6 +9,15 @@
 
 .dialog {
     margin-bottom: 5px;
+    display: flex;
+}
+.dialog a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.dialog:hover {
+background-color: #e5ebf1;
 }
 
 .pict{
