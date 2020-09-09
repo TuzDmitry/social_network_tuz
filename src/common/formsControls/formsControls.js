@@ -15,11 +15,12 @@ import {Field} from "redux-form";
 // }
 
 const FormControl = ({meta, children}) => {
+    // debugger
     const hasError = meta.touched && meta.error
     return (
         <div className={style.formControl + " " + (hasError ? style.error : "")}>
             {children}
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <div>{meta.error}</div>}
         </div>
 
     )
@@ -35,25 +36,28 @@ export const Textarea = (props) => {
 }
 
 export const Input = (props) => {
-    const {input, meta, ...restProps} = props
+    const {input, meta,label, ...restProps} = props
     return (
         <FormControl {...props}>
             <input {...input} {...restProps}/>
+            {label&&<label htmlFor={props.id}>{label}</label>}
         </FormControl>
     )
 }
 
 
-export const createField = (placeholder, name, component, validators, props = {}, text = '') => {
+export const createField = (placeholder, name, component, validators, props = {}, label = '') => {
     return (
-        <div>
+        <div className={style.wrapperField}>
             <Field placeholder={placeholder}
+                   id={name}
                    name={name}
+                   label={label}
                    component={component}
                    validate={validators}
-                   {...props}/>
-
-            {text}
+                   {...props}
+            />
+            {/*{text && <label htmlFor={name}>{text}</label>}*/}
         </div>
     )
 }

@@ -71,7 +71,9 @@ export const login = (email, password, rememberMe, captcha) => {
         let response = await authAPI.login(email, password, rememberMe, captcha)
 
         if (response.data.resultCode === 0) {
-            dispatch(setUserDataThunk())
+            dispatch(setUserDataThunk());
+            //если после логинизации все ок, стираем из бизнеса старую капчу
+            dispatch(getCaptchaUrlSuccess(null));
 
         } else {
             if (response.data.resultCode === 10) {

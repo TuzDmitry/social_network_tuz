@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {login} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 import style from './../../common/formsControls/formsControls.module.css'
+import st from './Login.module.css'
 
 const Login = (props) => {
 
@@ -27,13 +28,26 @@ const LoginForm = (props) => {
 
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form className={st.loginForm} onSubmit={props.handleSubmit}>
+            <div style={{
+                boxSizing: "border-box",
+                padding: "15px",
+                color: "white",
+                backgroundColor: "#333",
+                marginBottom: "15px",
+                borderRadius: "5px"
+            }}>
+                <div><i>данные тестового аккаунта:</i></div>
+                <div>Email: <ins>free@samuraijs.com</ins></div>
+                <div>Password: <ins>free</ins></div>
+            </div>
+
             {props.captchaUrl && <img src={props.captchaUrl} alt=""/>}
             {props.captchaUrl && createField('symbols from image', 'captcha', Input, [required])}
 
-            {createField('Email', 'email', Input, [required, maxLength30])}
-            {createField('Password', 'password', Input, [required, maxLength30])}
-            {createField(null, 'rememberMe', Input, null, {type: "checkbox"}, 'remember me')}
+            {createField('Email', 'email', Input, [required, maxLength30], {type: "text"})}
+            {createField('Password', 'password', Input, [required, maxLength30], {type: "text"})}
+            {createField(null, 'rememberMe', Input, null, {type: "checkbox"}, 'Remember me')}
 
             {props.error && <div className={style.errorSummary}>
                 {props.error}

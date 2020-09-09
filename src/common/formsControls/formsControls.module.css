@@ -1,20 +1,47 @@
-.formControl{
-    /*border: 1px solid green;*/
+.formControl:last-child {
+    display: flex;
+    align-items: center;
+}
+
+.formControl input[type="text"] {
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+    padding: 0 16px 0 10px;
+    border: 1px solid #ebebeb;
+    outline: 0;
+    height: 40px;
+    border-radius: 4px;
+    margin-top: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-family: Roboto, Open Sans, Helvetica, Arial;
+    -webkit-box-shadow: none;
+}
+
+.formControl input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
 }
 
 .formControl.error input,
-.formControl.error textarea{
+.formControl.error textarea {
     border: 2px solid red
 }
 
-.formControl.error span{
+.formControl.error div {
     color: red;
 }
 
-.errorSummary{
+.errorSummary {
     padding: 5px;
     border: 2px solid red;
     color: red;
+}
+
+.wrapperField {
+    margin-bottom: 20px;
 }
 
 
